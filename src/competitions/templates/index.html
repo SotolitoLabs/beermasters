@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if latest_contest_list %}
+<ul>
+{% for contest in latest_contest_list %}
+  <li><a href="/competitions/{{ contest.id }}/">{{ contest.name }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No Contests are available.</p>
+{% endif %}</p></a></li></ul>
+{% endblock %}
