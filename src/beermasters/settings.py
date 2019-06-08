@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ayi_cv4mzf8g(wj%jf8-ms6*33tn29hgs@304&q1lay^!q0uu4'
+SECRET_KEY = 'ayi_cv4mzf8g(wj%jf8-ms6*33tn29hgs@304&q1lay^!q0uu4!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'competitions.apps.CompetitionsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +76,11 @@ WSGI_APPLICATION = 'beermasters.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE':   'django.db.backends.postgresql_psycopg2',
+        'HOST':     '127.0.0.1',
+        'NAME':     'DBNAME',
+        'USER':     'USERNAME',
+        'PASSWORD': 'AAAAA',
     }
 }
 
@@ -105,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chihuahua'
 
 USE_I18N = True
 
