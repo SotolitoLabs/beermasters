@@ -20,3 +20,8 @@ urlpatterns = [
     path('competitions/', include('competitions.urls')),
     path('admin/', admin.site.urls),
 ]
+
+admin.site.site_header = "BeerMasters!"
+admin.site.site_title = "BeerMasters Baby!!"
+admin.site.index_title = "Welcome to BeerMasters"
+
