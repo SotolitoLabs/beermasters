@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
 {% block content %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+<h6 class="border-bottom border-gray pb-2 mb-0">{% trans 'Latest Contests' %}</h6>
 {% if latest_contest_list %}
-<ul>
+
 {% for contest in latest_contest_list %}
-  <li><a href="/competitions/{{ contest.id }}/">{{ contest.name }}</a></li>
+	<div class="media text-muted pt-3">
+		<img data-src="{% static 'js/holder.js' %}/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+    	<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+  		<a href="/competitions/{{ contest.id }}/">{{ contest.name }}</a>
+		</p>
+	</div>
 {% endfor %}
-</ul>
 {% else %}
 <p>No Contests are available.</p>
-{% endif %}</p></a></li></ul>
+{% endif %}
+<small class="d-block text-right mt-3">
+	<a href="#">{% trans 'All Contests' %}</a>
+</small>
+
+</div>
 {% endblock %}
