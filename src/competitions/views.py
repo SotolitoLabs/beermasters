@@ -14,5 +14,6 @@ def index(request):
 
 
 def detail(request, contest_id):
-    return HttpResponse("Beermasters contest: %s!!" % contest_id)
+    contest = Contest.objects.get(pk=contest_id)
+    return render(request, 'contest_detail.html', {'contest': contest})
 
