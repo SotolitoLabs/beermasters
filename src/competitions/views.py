@@ -17,3 +17,8 @@ def detail(request, contest_id):
     contest = Contest.objects.get(pk=contest_id)
     return render(request, 'contest_detail.html', {'contest': contest})
 
+def scoresheet(request, contest_id):
+    contest = Contest.objects.get(pk=contest_id)
+    return render(request, 'score_sheet.html', {'user': request.user, 'contest': contest})
+
+
