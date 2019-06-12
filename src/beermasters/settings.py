@@ -123,3 +123,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# bootstrap3 settings for using local CSS and JS files
+
+BOOTSTRAP4 = {
+    # The complete URL to the Bootstrap CSS file
+    # Note that a URL can be either
+    # - a string, e.g. "//code.jquery.com/jquery.min.js"
+    # - a dict like the default value below (use key "url" for the actual link)
+    "css_url": {
+        "url": "/static/css/bootstrap.min.css",
+        "integrity": "sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB",
+        "crossorigin": "anonymous",
+    },
+
+    # The complete URL to the Bootstrap JavaScript file
+    "javascript_url": {
+        "url": "/static/js/bootstrap.min.js",
+        "integrity": "sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa",
+        "crossorigin": "anonymous",
+    },
+
+    "popper_url": {
+        "url": "/static/js/popper.min.js",
+        "integrity": "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49",
+        "crossorigin": "anonymous",
+    },
+
+    "jquery_url": "/static/js/jquery.min.js",
+}
