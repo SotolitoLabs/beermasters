@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+{% if table %}
+    <div class="row border-bottom border-gray">
+        <div class="col">
+            <h6 class="pb-2 mb-0">{% trans 'Contest' %}: {{ table.contest.name }}</h6>
+        </div>
+        <div class="col text-center">
+             {% trans 'Table' %}: {{ table.name }}
+        </div>
+        <div class="col text-right">
+            Role: {{ participant.role.name }}
+        </div>
+    
+    </div>
+
+    <div class="row pt-4">
+    <ul>
+	{% for item in items.all %}
+        <li><a href="/competitions/table/{{ table.id}}/item/scoresheet/{{ item.id }}">{{ item }}</a></li>
+	{% endfor %}
+	</ul>
+    </div>
+{% else %}
+<p> {% trans 'Invalid Contest ID' %} .</p>
+{% endif %}
+</div>
+{% endblock %}
+
