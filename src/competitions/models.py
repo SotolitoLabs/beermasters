@@ -60,3 +60,11 @@ class ContestTableItem(models.Model):
     def __str__(self):
         return self.item.item.name
 
+class BjcpRank(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+class UserBjcpInfo(models.Model):
+    bjcp_id = models.IntegerField(default=0)
+    bjcp_rank  = models.ForeignKey(BjcpRank, on_delete=models.DO_NOTHING)
