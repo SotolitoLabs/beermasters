@@ -17,6 +17,7 @@ $ cat <<EOF >> post-recieve
 # Just pull on the repo
 REPODIR="/home/repo"
 cd $REPODIR
+echo "TRIGGERING POOR MAN's CI" >> $REPODIR/ci.log
 git pull
 EOF
 ```
