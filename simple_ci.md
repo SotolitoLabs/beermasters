@@ -43,3 +43,4 @@ $ git push ci-repo master
 
 # References
 * https://gist.github.com/noelboss/3fe13927025b89757f8fb12e9066f2fa
+* https://githooks.com/
