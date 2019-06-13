@@ -9,6 +9,8 @@ $ git init --bare /var/beer/ci-update-repo
 ```
 
 ## (SERVER) Add the post recieve script
+This can be as easy as issuing a `git pull` or as complex as creating packages, containers
+and running smoke tests.
 
 ```
 $ cd ci-update-repo/hooks
