@@ -28,7 +28,7 @@ EOF
 
 ```
 $ cd git-local-repo
-$ git add remote ci-repo  user@remote.repo.com
+$ git remote add ci-repo ssh://user@remote.repo.com:1234/home/repo
 ```
 
 ## (WORKSTATION) Trigger the CI
