@@ -26,21 +26,21 @@ Once the container has been created, we have to login into it to finish configur
 
 ```
 
-docker exec -it dev_postgres /bin/bash
+podman exec -it bmpostgres /bin/bash
 
 su - postgres
 
 
-CREATE DATABASE trydjango;
+CREATE DATABASE beermasters;
 
-CREATE USER devuser WITH PASSWORD 'copacervecera';
+CREATE USER db_user WITH PASSWORD 'copacervecera';
 
-ALTER ROLE devuser SET client_encoding TO 'utf8';
-ALTER ROLE devuser SET default_transaction_isolation TO 'read committed';
-ALTER ROLE devuser SET timezone TO 'UTC';
+ALTER ROLE db_user SET client_encoding TO 'utf8';
+ALTER ROLE db_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE db_user SET timezone TO 'UTC';
 
 
-GRANT ALL PRIVILEGES ON DATABASE trydjango TO devuser;
+GRANT ALL PRIVILEGES ON DATABASE beermasters TO db_user;
 
 \q
 
