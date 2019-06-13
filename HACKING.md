@@ -16,6 +16,40 @@ docker run -ti -v `pwd`:/code --name test-django sotolito/django django-admin st
 ```
 
 
+### Database setup
+
+The application relies on a database that resides in a Podman container. The following steps describe the procedure to configure the database
+
+Execute the script postgres_up.sh located in /src . This script will create the container from the latest postgres image
+
+Once the container has been created, we have to login into it to finish configuring it
+
+```
+
+podman exec -it bmpostgres /bin/bash
+
+su - postgres
+
+
+CREATE DATABASE beermasters;
+
+CREATE USER db_user WITH PASSWORD 'copacervecera';
+
+ALTER ROLE db_user SET client_encoding TO 'utf8';
+ALTER ROLE db_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE db_user SET timezone TO 'UTC';
+
+
+GRANT ALL PRIVILEGES ON DATABASE beermasters TO db_user;
+
+\q
+
+exit  // from postgres user
+
+exit  // from container
+```
+
+
 ## TODO
 * Dockerfile
 * CI
