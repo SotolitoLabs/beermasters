@@ -15,8 +15,10 @@ def index(request):
 
 
 def detail(request, contest_id):
+    cps = [request.user]
     contest = Contest.objects.get(pk=contest_id)
-    cps = ContestParticipant.objects.filter(contest=contest_id).filter(user=request.user)
+    if request.user.id != None:
+    	cps = ContestParticipant.objects.filter(contest=contest_id).filter(user=request.user)
     cpts = ContestTable.objects.filter(contest=contest_id)
     return render(request, 'contest_detail.html', 
             {'contest': contest, 'participant': cps[0], 'tables': cpts})
