@@ -108,3 +108,6 @@ venv.bak/
 
 # Invalid passwords on git
 settings.py
+
+# Poor man's CI logs
+*log
