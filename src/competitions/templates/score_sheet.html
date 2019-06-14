@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-{% if participant.role.level != 2 %}
+{% if participant.role.level <= 2 %}
 <p> {% trans 'You need to be judge to do do this' %} .</p>
  {% else %}
 
