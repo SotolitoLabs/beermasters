@@ -17,10 +17,11 @@ $ cd ci-update-repo/hooks
 $ cat <<EOF >> post-recieve
 #!/usr/bin/sh
 # Just pull on the repo
-REPODIR="/home/repo"
+REPODIR="/var/beermasters"
 cd $REPODIR
-echo "TRIGGERING POOR MAN's CI" >> $REPODIR/ci.log
-git pull
+echo `date +"%m-%d-%y-%H:%m"`:"TRIGGERING POOR MAN's CI" >> $REPODIR/ci.log
+git --git-dir=${REPODIR}/.git --work-tree=${REPODIR} pull -v origin master &>> $REPODIR/ci.log
+
 EOF
 ```
 
