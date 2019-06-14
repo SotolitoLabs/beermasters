@@ -1,4 +1,5 @@
 #!/bin/bash
 
-echo "Entering django shell in $1"
-podman exec -ti $1 /code/manage.py shell
+CONTAINER=$1
+echo "Entering django shell in ${CONTAINER}"
+podman exec -ti ${CONTAINER} /code/manage.py shell
