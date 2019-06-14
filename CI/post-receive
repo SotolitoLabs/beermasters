@@ -1,0 +1,7 @@
+# Just pull on the repo
+REPODIR="/var/beermasters"
+cd $REPODIR
+
+echo `date +"%m-%d-%y-%H:%m"`:"TRIGGERING POOR MAN's CI" >> $REPODIR/ci.log
+git --git-dir=${REPODIR}/.git --work-tree=${REPODIR} pull -v origin master &>> $REPODIR/ci.log
+
