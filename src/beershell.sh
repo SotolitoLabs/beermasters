@@ -1,3 +1,4 @@
 #!/bin/bash
 
-podman exec -ti test-django /code/manage.py shell
+echo "Entering django shell in $1"
+podman exec -ti $1 /code/manage.py shell
