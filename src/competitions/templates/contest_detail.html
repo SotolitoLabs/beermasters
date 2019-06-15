@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 <div class="my-3 p-3 bg-white rounded box-shadow">
-{% if contest %}
+{% if contest and request.user %}
     <div class="row border-bottom border-gray">
         <div class="col">
             <h6 class="pb-2 mb-0">{% trans 'Contest' %}: {{ contest.name }} </h6>
