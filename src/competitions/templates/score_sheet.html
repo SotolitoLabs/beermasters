@@ -7,9 +7,12 @@
 <p> {% trans 'You need to be judge to do do this' %} .</p>
  {% else %}
 
-<form action="{% url 'score' contest.id %}" method="POST">
+<form action="{% url 'score' table_item.id %}" method="POST">
 {% csrf_token %}
-{% if contest %}
+{% if contest and table %}
+    <input type="hidden" name="table_id" value="{{ table.id }}">
+    <input type="hidden" name="contest_id" value="{{ contest.id }}">
+    <input type="hidden" name="table_item_id" value="{{ table_item.id }}">
     <div class="my-3 p-3 bg-white rounded box-shadow form-group">
 	<div class="row p-3 border-bottom border-gray">
 	    <div class="col text-left">
@@ -30,7 +33,7 @@
             <h6>{{ participant.user.first_name }} {{ participant.user.last_name }}  ({{ participant.role.name }})</h6>
         </div>
         <div class="col ">
-            <h6>Beer: {{ item.name }}</h6>
+            <h6>Beer: {{ table_item }}</h6>
         </div>
 
 
