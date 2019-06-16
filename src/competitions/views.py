@@ -30,13 +30,15 @@ def scoresheet(request, table_id, item_id):
     if request.user.id != None:
         cps = ContestParticipant.objects.filter(
         contest=table.contest.id).filter(user=request.user)
-    item = Item.objects.get(pk=item_id)
+    table_item = ContestTableItem.objects.get(pk=item_id)
     contest = Contest.objects.get(pk=table.contest.id)
     return render(request, 'score_sheet.html', {'participant': cps[0], 'contest': contest,
-    'table': table, 'contest': contest, 'item': item})
+    'table': table, 'contest': contest, 'table_item': table_item})
 
-def score(request, contest_id):
-    contest = Contest.objects.get(pk=contest_id)
+def score(request, table_item_id):
+    table_item = ContestTableItem.objects.get(item=table_item_id)
+    contest = Contest.objects.get(pk=request.POST['contest_id'])
+
     return HttpResponse("Scoring beer %s category %s contest %s" % (1, 1, contest.id))
 
 def table(request, table_id):
@@ -46,6 +48,7 @@ def table(request, table_id):
         cps = ContestParticipant.objects.filter(
         contest=table.contest.id).filter(user=request.user)
     items = ContestTableItem.objects.filter(table=table_id)
+    # TODO: refactor item label to contest_table_item to avoid confusion
     return render(request, 'table_detail.html', {'user': request.user,
     'items': items, 'table': table, 'participant': cps[0]})
 
