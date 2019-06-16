@@ -235,7 +235,7 @@
                     </div>
 	
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="sour-acidic" id="sour-acidic">
+	            		<input class="form-check-input" type="checkbox" value="" name="sulfur" id="sulfur">
 	            		<label class="form-check-label font-weight-bold" for="">Sulfur</label> – The aroma of rotten eggs or burning matches.<br />
                     </div>
 	
@@ -310,6 +310,7 @@
 	    <div class="col p-5 align-items-left">
 	        <div class="form-group">
 	            <div class="form-group row border-bottom border-gray pb-3">
+                    <!-- TODO: add category and subcategory dropdown -->
                     <div class="form-check col">
 	                    <label for="category" class="font-weight-bold">Category #</label>
                         <input class="form-control" name="category" type="text" placeholder="Category">
@@ -320,7 +321,7 @@
                     </div>
                     <div class="form-check col">
 	                    <label for="entry" class="font-weight-bold">Entry #</label>
-                        <input class="form-control" name="entry" type="text" placeholder="Entry">
+                        <input class="form-control" name="entry" type="text" value="{{ table_item.id }}" placeholder="Entry" readonly>
                     </div>
                 </div>
 	            <div class="form-group row border-bottom border-gray pb-3">
@@ -340,11 +341,11 @@
 	            <div class="form-group row border-bottom border-gray pb-3">
                     <div class="form-check col">
 	                    <label for="bottle" class="pr-4 font-weight-bold">Bottle Inspection:</label>
-                        <input class="form-check-input" type="checkbox" value="" name="bottle" id="bottle">
+                        <input class="form-check-input" type="checkbox" value="" name="bottle_inspection" id="bottle">
                         <small>Appropriate size, cap, fill level, label removal, etc.</small>
                         <br />
                         <small>Comments</small> 
-                        <input class="form-control" name="bottle" type="text" placeholder="Bottle">
+                        <input class="form-control" name="bottle_inspection_comment" type="text" placeholder="Bottle">
                     </div>
                 </div>
 	        </div>
@@ -353,14 +354,14 @@
 	                <label for="aroma" class="font-weight-bold">Aroma</label> <small>(as appropriate for style) 1-12</small>
                 </div>
                 <div class="form-group col col-sm-2">
-                    <input class="form-control" name="aroma-score" type="text" placeholder="1-12" min="1" max="12" maxlength="2">
+                    <input class="form-control" name="aroma_score" type="text" placeholder="1-12" min="1" max="12" maxlength="2">
                 </div>
 
             </div>
 	        <div class="form-group row border-bottom border-gray pb-3">
                 <div class="form-group col">
                         <small>Comment on malt, hops, esters, and other aromatics</small> 
-                        <input class="form-control" name="comment-aroma" type="text" placeholder="Comment on Aroma">
+                        <input class="form-control" name="aroma_comment" type="text" placeholder="Comment on Aroma">
                 </div>
             </div>
 	        <div class="form-group row">
@@ -368,12 +369,13 @@
 	                <label for="apperance" class="font-weight-bold">Apperance</label><small>(as appropriate for style)</small>
                 </div>
                 <div class="form-group col col-sm-2">
-                    <input class="form-control" name="apperance-score" type="text" placeholder="1-3" min="1" max="3" maxlength="1">
+                    <input class="form-control" name="apperance_score" type="text" placeholder="1-3" min="1" max="3" maxlength="1">
                 </div>
             </div>
 	        <div class="form-group row border-bottom border-gray pb-3">
                 <div class="form-group col">
-                    <small>Comment on color, clarity, and head (retention, color, and texture)</small><input class="form-control" name="comment-apperance" type="text" placeholder="Comment on Apperance">
+                    <small>Comment on color, clarity, and head (retention, color, and texture)</small>
+                    <input class="form-control" name="apperance_comment" type="text" placeholder="Comment on Apperance">
                 </div>
             </div>
 	
@@ -382,13 +384,13 @@
 	                <label for="apperance" class="font-weight-bold">Flavor</label><small>(as appropriate for style)</small>
                 </div>
                 <div class="form-group col col-sm-3">
-                    <input class="form-control" name="flavor-score" type="text" placeholder="1-20" min="1" max="20" maxlength="2">
+                    <input class="form-control" name="flavor_score" type="text" placeholder="1-20" min="1" max="20" maxlength="2">
                 </div>
             </div>
 	        <div class="form-group row border-bottom border-gray pb-3">
                 <div class="form-group col">
                 <small>Comment on malt, hops, fermentation characteristics, balance, finish/aftertaste, and other flavor characteristics</small>
-                <input class="form-control" name="comment-flavor" type="text" placeholder="Comments on Flavor">
+                <input class="form-control" name="flavor_comment" type="text" placeholder="Comments on Flavor">
                 </div>
             </div>
 	
@@ -398,14 +400,14 @@
 
                 </div>
                 <div class="form-group col col-sm-2">
-                    <input class="form-control" name="mouthfeel-score" type="text" placeholder="1-5" min="1" max="5" maxlength="1">
+                    <input class="form-control" name="mouthfeel_score" type="text" placeholder="1-5" min="1" max="5" maxlength="1">
                 </div>
             </div>
 	
 	        <div class="form-group row border-bottom border-gray pb-3">
                 <div class="form-group col">
                 <small>Comment on body,   carbonation, warmth, creaminess, astringency, and other palate sensations</small>
-                <input class="form-control" name="comment-mouthfeel" type="text" placeholder="Comments on Mouthfeel">
+                <input class="form-control" name="mouthfeel_comment" type="text" placeholder="Comments on Mouthfeel">
                 </div>
             </div>
 
@@ -415,14 +417,14 @@
 	                <label for="mouthfeel" class="font-weight-bold">Overall Impression</label><small>(as appropriate f  or style)</small>
                 </div>
                 <div class="form-group col col-sm-2">
-                    <input class="form-control" name="overall-score" type="text" placeholder="1-10" min="1" m  ax="10" maxlength="2">
+                    <input class="form-control" name="overall_score" type="text" placeholder="1-10" min="1" m  ax="10" maxlength="2">
                 </div>
 	        </div>
 
 	        <div class="form-group row border-bottom border-gray pb-3">
                 <div class="form-group col">
                     <small>Comment on overall drinking pleasure associated with entry, give suggestions for improvement</small>
-                <input class="form-control" name="comment-overall" type="text" placeholder="Comments on Overall Impression">
+                <input class="form-control" name="overall_comment" type="text" placeholder="Comments on Overall Impression">
                 </div>
             </div>
 	        <div class="form-group">
@@ -436,16 +438,16 @@
 			            <label class="form-check-label font-weight-bold" for="">Classic Example</label>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="style-4" id="style-4">
+			            <input class="form-check-input" type="radio" value="4" name="style" id="style-4">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="style-3" id="style-3">
+			            <input class="form-check-input" type="radio" value="3" name="style" id="style-3">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="style-2" id="style-2">
+			            <input class="form-check-input" type="radio" value="2" name="style" id="style-2">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="style-1" id="style-1">
+			            <input class="form-check-input" type="radio" value="1" name="style" id="style-1">
                     </div>
                     <div class="form-group col">
 			            <label class="form-check-label font-weight-bold" for="">Not To Style</label>
@@ -463,16 +465,16 @@
 			            <label class="form-check-label font-weight-bold" for="">Flawless</label>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="technical-4" id="technical-4">
+			            <input class="form-check-input" type="radio" value="4" name="technical" id="technical-4">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="technical-3" id="technical-3">
+			            <input class="form-check-input" type="radio" value="3" name="technical" id="technical-3">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="technical-2" id="technical-2">
+			            <input class="form-check-input" type="radio" value="2" name="technical" id="technical-2">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="technical-1" id="technical-1">
+			            <input class="form-check-input" type="radio" value="1" name="technical" id="technical-1">
                     </div>
                     <div class="form-group col">
 			            <label class="form-check-label font-weight-bold" for="">Significant Flaws</label>
@@ -490,16 +492,16 @@
 			            <label class="form-check-label font-weight-bold" for="">Wonderful</label>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="intangilble-4" id="intangilble-4">
+			            <input class="form-check-input" type="radio" value="4" name="intangilble" id="intangilble-4">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="intangilble-3" id="intangilble-3">
+			            <input class="form-check-input" type="radio" value="3" name="intangilble" id="intangilble-3">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="intangilble-2" id="intangilble-2">
+			            <input class="form-check-input" type="radio" value="2" name="intangilble" id="intangilble-2">
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="checkbox" value="" name="intangilble-1" id="intangilble-1">
+			            <input class="form-check-input" type="radio" value="1" name="intangilble" id="intangilble-1">
                     </div>
                     <div class="form-group col">
 			            <label class="form-check-label font-weight-bold" for="">Lifeless</label>
