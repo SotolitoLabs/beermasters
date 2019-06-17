@@ -95,9 +95,16 @@ class ContestItem(models.Model):
     def __str__(self):
         return self.item.name
 
-class ContestTable(models.Model):
+class ContestCategory(models.Model):
     contest = models.ForeignKey(Contest, on_delete=models.DO_NOTHING)
     name    = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+class ContestTable(models.Model):
+    contest  = models.ForeignKey(Contest, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(ContestCategory, on_delete=models.DO_NOTHING)
+    name     = models.CharField(max_length=100)
     def __str__(self):
         return self.name
 
@@ -140,24 +147,6 @@ class ContestScoreSheetDescriptor(models.Model):
 
 
 
-# Descriptors
-#NAME = acetaldehyde
-#NAME = alcoholic
-#NAME = astringent
-#NAME = diacetyl
-#NAME = dms
-#NAME = estery
-#NAME = grassy
-#NAME = light-Struck
-#NAME = metallic
-#NAME = oxidized
-#NAME = phenolic
-#NAME = musty
-#NAME = solvent
-#NAME = sour-acidic
-#NAME = sulfur
-#NAME = vegetal
-#NAME = yeasty
 
 #TODO check categories
 #NAME = category" type="text
