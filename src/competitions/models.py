@@ -128,6 +128,7 @@ class ContestScoreSheet(models.Model):
     style               = models.IntegerField()
     technical           = models.IntegerField()
     intangilble         = models.IntegerField()
+    total_score         = models.IntegerField()
     def __str__(self):
         return "%s on %s" % (self.table_item.item.name, self.table_item.table.name)
 
