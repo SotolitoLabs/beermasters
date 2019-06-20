@@ -14,13 +14,13 @@
     <input type="hidden" name="contest_id" value="{{ contest.id }}">
     <input type="hidden" name="table_item_id" value="{{ table_item.id }}">
     <div class="my-3 p-3 bg-white rounded box-shadow form-group">
-	<div class="row p-3 border-bottom border-gray">
-	    <div class="col text-left">
+    <div class="row p-3 border-bottom border-gray">
+        <div class="col text-left">
             <h4 class="pb-2 mb-0 font-weight-bold">{% trans 'Beer Score Sheet' %}: {{ contest.name }}</h4>
         </div>
 
     </div>
-	<div class="row p-3 border-bottom border-gray">
+    <div class="row p-3 border-bottom border-gray">
 <!--
         <div class="col">
             <h6 class="pb-2 mb-0">{% trans 'Contest' %}: {{ table.contest.name }}</h6>
@@ -35,492 +35,429 @@
         <div class="col ">
             <h6>Beer: {{ table_item }}</h6>
         </div>
+        <div class="col ">
+            <h6>Score: {{ score }}</h6>
+        </div>
 
 
-	    <div class="col pb-2 pl-3 text-right">
+
+        <div class="col pb-2 pl-3 text-right">
             <button type="submit" class="btn btn-primary">Score Beer</button>
         </div>
     </div>
 
 
-	<div class="row">
-	    <div class="col p-5 align-items-left">
-	        <div class="form-group">
-	            <label for="judge-name">Judge Name</label> {{ user.first_name }} {{ user.last_name }}<br />
-	            <label for="judge-bjcp-id">Judge BJCP ID</label> { user.bjcpid }<br />
-	            <label for="judge-bjcp-email">Judge Email</label> {{ user.email }}<br />
-	        </div>
-	
-	        <div class="form-group pl-1 mb-0">
-	            <h5 class="border-bottom border-gray font-weight-bold">BJCP Rank or Status:</h5>
-	            <div class="form-group row">
+    <div class="row">
+        <div class="col p-5 align-items-left">
+            <div class="form-group">
+                <label for="judge-name">Judge Name</label> {{ user.first_name }} {{ user.last_name }}<br />
+                <label for="judge-bjcp-id">Judge BJCP ID</label> { user.bjcpid }<br />
+                <label for="judge-bjcp-email">Judge Email</label> {{ user.email }}<br />
+            </div>
+    
+            <div class="form-group pl-1 mb-0">
+                <h5 class="border-bottom border-gray font-weight-bold">BJCP Rank or Status:</h5>
+                <div class="form-group row">
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="apprentice" id="apprentice">
-	                    <label class="form-check-label pr-2" for="apprentice">Apprentice</label>
+                        <input class="form-check-input" type="checkbox" value="" name="apprentice" id="apprentice">
+                        <label class="form-check-label pr-2" for="apprentice">Apprentice</label>
                     </div>
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="recognized" id="recognized">
-	                    <label class="form-check-label" for="recognized">Recognized</label>
+                        <input class="form-check-input" type="checkbox" value="" name="recognized" id="recognized">
+                        <label class="form-check-label" for="recognized">Recognized</label>
                     </div>
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="certified" id="certified">
-	                    <label class="form-check-label" for="">Certified</label>
-                    </div>
-                </div>
-                	
-	            <div class="form-group row">
-                    <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="national" id="national"> 
-	                    <label class="form-check-label pr-4" for="national">National</label>
-                    </div>
-                    <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="master" id="master">
-	                    <label class="form-check-label" for="master">Master</label>
-                    </div>
-                    <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="grand_master" id="grand_master"> 
-	                    <label class="form-check-label" for="">Grand Master</label>
+                        <input class="form-check-input" type="checkbox" value="" name="certified" id="certified">
+                        <label class="form-check-label" for="">Certified</label>
                     </div>
                 </div>
-
-	            <div class="form-group row">
+                    
+                <div class="form-group row">
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="honormaster" id="honormaster">
-	                    <label class="form-check-label" for="honormaster">Honorary Master</label>
+                        <input class="form-check-input" type="checkbox" value="" name="national" id="national"> 
+                        <label class="form-check-label pr-4" for="national">National</label>
                     </div>
-
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="honorgm" id="honorgm">
-	                    <label class="form-check-label" for="honogm">Honorary GM</label>
+                        <input class="form-check-input" type="checkbox" value="" name="master" id="master">
+                        <label class="form-check-label" for="master">Master</label>
                     </div>
-	
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="mead_judge" id="mead_judge">
-	                    <label class="form-check-label" for="">Mead Judge</label>
+                        <input class="form-check-input" type="checkbox" value="" name="grand_master" id="grand_master"> 
+                        <label class="form-check-label" for="">Grand Master</label>
                     </div>
                 </div>
 
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="provisional_judge" id="provisional_judge">
-	                    <label class="form-check-label" for="">Provisional Judge</label>
-	                </div>
-                    <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="rank_pending" id="rank_pending">
-	                    <label class="form-check-label" for="">Rank Pending</label>
+                        <input class="form-check-input" type="checkbox" value="" name="honormaster" id="honormaster">
+                        <label class="form-check-label" for="honormaster">Honorary Master</label>
                     </div>
+
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="cider_judge" id="cider_judge">
-	                    <label class="form-check-label" for="">Cider Judge</label>
+                        <input class="form-check-input" type="checkbox" value="" name="honorgm" id="honorgm">
+                        <label class="form-check-label" for="honogm">Honorary GM</label>
                     </div>
-                </div>
-	        </div>
-	        <div class="form-group pt-3">
-	            <h5 class="border-bottom border-gray font-weight-bold">Non-BJCP Qualifications:</h5>
-	            <div class="form-group row">
+    
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="prof_brewer" id="prof_brewer">
-	                    <label class="form-check-label" for="">Professional Brewer</label>
-                    </div>
-                    <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="beer_somelier" id="beer_somelier">
-        	            <label class="form-check-label" for="">Beer Sommelier</label>
-                    </div>
-                    <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="gabf_wbc" id="gabf_wbc">
-	                    <label class="form-check-label" for="">GABF/WBC</label>
+                        <input class="form-check-input" type="checkbox" value="" name="mead_judge" id="mead_judge">
+                        <label class="form-check-label" for="">Mead Judge</label>
                     </div>
                 </div>
 
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="cert_cicerone" id="cert_cicerone">
-	                    <label class="form-check-label" for="">Certified Cicerone</label>
-                    </div>
-	
-                    <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="adv_cicerone" id="adv_cicerone">
-	                    <label class="form-check-label" for="">Adv. Cicerone</label>
+                        <input class="form-check-input" type="checkbox" value="" name="provisional_judge" id="provisional_judge">
+                        <label class="form-check-label" for="">Provisional Judge</label>
                     </div>
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="master_cicerone" id="master_cicerone">
-	                    <label class="form-check-label" for="">Master Cicerone</label>
+                        <input class="form-check-input" type="checkbox" value="" name="rank_pending" id="rank_pending">
+                        <label class="form-check-label" for="">Rank Pending</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="cider_judge" id="cider_judge">
+                        <label class="form-check-label" for="">Cider Judge</label>
                     </div>
                 </div>
-	
-	            <div class="form-group row">
+            </div>
+            <div class="form-group pt-3">
+                <h5 class="border-bottom border-gray font-weight-bold">Non-BJCP Qualifications:</h5>
+                <div class="form-group row">
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="sensory" id="sensory">
-	                    <label class="form-check-label" for="">Sensory Training</label>
+                        <input class="form-check-input" type="checkbox" value="" name="prof_brewer" id="prof_brewer">
+                        <label class="form-check-label" for="">Professional Brewer</label>
                     </div>
                     <div class="form-check col">
-	                    <input class="form-check-input" type="checkbox" value="" name="non-bjcp-sensory" id="non-bjcp-other">
-	                    <label class="form-check-label" for="">Other</label>
+                        <input class="form-check-input" type="checkbox" value="" name="beer_somelier" id="beer_somelier">
+                        <label class="form-check-label" for="">Beer Sommelier</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="gabf_wbc" id="gabf_wbc">
+                        <label class="form-check-label" for="">GABF/WBC</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="cert_cicerone" id="cert_cicerone">
+                        <label class="form-check-label" for="">Certified Cicerone</label>
+                    </div>
+    
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="adv_cicerone" id="adv_cicerone">
+                        <label class="form-check-label" for="">Adv. Cicerone</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="master_cicerone" id="master_cicerone">
+                        <label class="form-check-label" for="">Master Cicerone</label>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="sensory" id="sensory">
+                        <label class="form-check-label" for="">Sensory Training</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="non-bjcp-sensory" id="non-bjcp-other">
+                        <label class="form-check-label" for="">Other</label>
                     </div>
                     <div class="form-check col">
                         <input type="text" class="form-control" name="non-bjcp-qual-other" placeholder="Other">
                     </div>
                 </div>
-	        </div>
-	
-	        <div class="form-group">
-	            <h5 class="border-bottom border-gray font-weight-bold">Descriptor Definitions (Mark all that apply):</h5>
+            </div>
+    
+            <div class="form-group">
+                <h5 class="border-bottom border-gray font-weight-bold">Descriptor Definitions (Mark all that apply):</h5>
                     <div class="form-check">
-	                    <input class="form-check-input" type="checkbox" value="" name="acetaldehyde" id="acetaldehyde">
-	                    <label class="form-check-label font-weight-bold" for="">Acetaldehyde</label> – Green apple-like aroma and flavor. Appearance (as appropriate for style)<br />
+                        <input class="form-check-input" type="checkbox" name="acetaldehyde" id="acetaldehyde" {% if acetaldehyde != None %}checked{% endif%}>
+                        <label class="form-check-label font-weight-bold" for="">Acetaldehyde</label> – Green apple-like aroma and flavor. Appearance (as appropriate for style)<br />
                     </div>
-	
+    
                     <div class="form-check">
-	                    <input class="form-check-input" type="checkbox" value="" name="alcoholic" id="alcoholic">
-	                    <label class="form-check-label font-weight-bold" for="">Alcoholic</label> – The aroma, flavor, and warming effect of ethanol and higher alcohols. Sometimes described as hot.<br />
+                        <input class="form-check-input" type="checkbox" name="alcoholic" id="alcoholic" {% if alcoholic != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Alcoholic</label> – The aroma, flavor, and warming effect of ethanol and higher alcohols. Sometimes described as hot.<br />
                     </div>
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="astringent" id="astringent">
-	            		<label class="form-check-label font-weight-bold" for="">Astringent</label> – Puckering, lingering harshness and/or dryness in the finish/aftertaste; harsh graininess; huskiness.<br />
+                        <input class="form-check-input" type="checkbox" name="astringent" id="astringent" {% if astringent != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Astringent</label> – Puckering, lingering harshness and/or dryness in the finish/aftertaste; harsh graininess; huskiness.<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="diacetyl" id="aiacetyl">
-	            		<label class="form-check-label font-weight-bold" for="">Diacetyl</label> – Artificial butter, butterscotch, or toffee aroma and flavor. Sometimes perceived as a slickness on the tongue.<br />
+                        <input class="form-check-input" type="checkbox" name="diacetyl" id="aiacetyl" {% if diacetyl != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Diacetyl</label> – Artificial butter, butterscotch, or toffee aroma and flavor. Sometimes perceived as a slickness on the tongue.<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="dms" id="dms">
-	            		<label class="form-check-label font-weight-bold" for="">DMS (dimethyl sulfide)</label> – At low levels a sweet, cooked or canned corn-like aroma and flavor.<br />
+                        <input class="form-check-input" type="checkbox" name="dms" id="dms" {% if dms != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">DMS (dimethyl sulfide)</label> – At low levels a sweet, cooked or canned corn-like aroma and flavor.<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="estery" id="estery">
-	            		<label class="form-check-label font-weight-bold" for="">Estery</label> – Aroma and/or flavor of any ester (fruits, fruit flavorings, or roses).<br />
+                        <input class="form-check-input" type="checkbox" name="estery" id="estery" {% if estery != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Estery</label> – Aroma and/or flavor of any ester (fruits, fruit flavorings, or roses).<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="grassy" id="grassy">
-	            		<label class="form-check-label font-weight-bold" for="">Grassy</label> – Aroma/flavor of fresh-cut grass or green leaves.<br />
+                        <input class="form-check-input" type="checkbox" name="grassy" id="grassy" {% if grassy != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Grassy</label> – Aroma/flavor of fresh-cut grass or green leaves.<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="light-Struck" id="light-Struck">
-	            		<label class="form-check-label font-weight-bold" for="">Light-Struck</label> – Similar to the aroma of a skunk. Mouthfeel (as appropriate for style)<br />
+                        <input class="form-check-input" type="checkbox" name="light_Struck" id="light_Struck" {% if light_struck != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Light-Struck</label> – Similar to the aroma of a skunk. Mouthfeel (as appropriate for style)<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="metallic" id="metallic">
-	            		<label class="form-check-label font-weight-bold" for="">Metallic</label> – Tinny, coiny, copper, iron, or blood-like flavor.<br />
+                        <input class="form-check-input" type="checkbox" name="metallic" id="metallic" {% if alcoholic != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Metallic</label> – Tinny, coiny, copper, iron, or blood-like flavor.<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="oxidized" id="oxidized">
-	            		<label class="form-check-label font-weight-bold" for="">Oxidized</label> – Any one or combination of stale, winy/vinous, cardboard, papery, or sherry-like aromas and flavors. <br />
+                        <input class="form-check-input" type="checkbox" name="oxidized" id="oxidized" {% if oxidized != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Oxidized</label> – Any one or combination of stale, winy/vinous, cardboard, papery, or sherry-like aromas and flavors. <br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="phenolic" id="phenolic">
-	            		<label class="form-check-label font-weight-bold" for="">Phenolic</label> – Spicy (clove, pepper), smoky, plastic, plastic adhesive strip, and/or medicinal (chlorophenolic). Overall Impression<br />
+                        <input class="form-check-input" type="checkbox" name="phenolic" id="phenolic" {% if phenolic != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Phenolic</label> – Spicy (clove, pepper), smoky, plastic, plastic adhesive strip, and/or medicinal (chlorophenolic). Overall Impression<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="musty" id="musty">
-	            		<label class="form-check-label font-weight-bold" for="">Musty</label> – Stale, musty, or moldy aromas/flavors.
+                        <input class="form-check-input" type="checkbox" name="musty" id="musty" {% if musty != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Musty</label> – Stale, musty, or moldy aromas/flavors.
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="solvent" id="solvent">
-	            		<label class="form-check-label font-weight-bold" for="">Solvent</label> – Aromas and flavors of higher alcohols (fusel alcohols). Similar to acetone or lacquer thinner aromas.<br />
+                        <input class="form-check-input" type="checkbox" name="solvent" id="solvent" {% if solvent != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Solvent</label> – Aromas and flavors of higher alcohols (fusel alcohols). Similar to acetone or lacquer thinner aromas.<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="sour-acidic" id="sour-acidic">
-	            		<label class="form-check-label font-weight-bold" for="">Sour/Acidic</label> – Tartness in aroma and flavor. Can be sharp and clean (lactic acid), or vinegar-like (acetic acid).<br />
+                        <input class="form-check-input" type="checkbox" name="sour_acidic" id="sour_acidic" {% if sour_acidic != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Sour/Acidic</label> – Tartness in aroma and flavor. Can be sharp and clean (lactic acid), or vinegar-like (acetic acid).<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="sulfur" id="sulfur">
-	            		<label class="form-check-label font-weight-bold" for="">Sulfur</label> – The aroma of rotten eggs or burning matches.<br />
+                        <input class="form-check-input" type="checkbox" name="sulfur" id="sulfur" {% if sulfur != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Sulfur</label> – The aroma of rotten eggs or burning matches.<br />
                     </div>
-	
-	
+    
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="vegetal" id="vegetal">
-	            		<label class="form-check-label font-weight-bold" for="">Vegetal</label> – Cooked, canned, or rotten vegetable aroma and flavor (cabbage, onion, celery, asparagus, etc.)<br />
+                        <input class="form-check-input" type="checkbox" name="vegetal" id="vegetal" {% if vegetal != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Vegetal</label> – Cooked, canned, or rotten vegetable aroma and flavor (cabbage, onion, celery, asparagus, etc.)<br />
                     </div>
-	
+    
                     <div class="form-check">
-	            		<input class="form-check-input" type="checkbox" value="" name="yeasty" id="yeasty">
-	            		<label class="form-check-label font-weight-bold" for="">Yeasty</label> – A bready, sulfury or yeast-like aroma or flavor.<br />
+                        <input class="form-check-input" type="checkbox" name="yeasty" id="yeasty" {% if yeasty != None %}checked{% endif %}>
+                        <label class="form-check-label font-weight-bold" for="">Yeasty</label> – A bready, sulfury or yeast-like aroma or flavor.<br />
                     </div>
-	        </div>
-	        <div class="form-group">
-	            <div class="form-group row">
+            </div>
+            <div class="form-group">
+                <div class="form-group row">
                     <div class="form-check col font-weight-bold text-center">
                         Scoring Guide
                     </div>
                 </div>
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-check col font-weight-bold">
-	                    Outstanding (45 - 50):
+                        Outstanding (45 - 50):
                     </div>
                     <div class="form-check col">
                         World-class example of style.
                     </div>
                 </div>
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-check col font-weight-bold">
-	                    Excellent (38 - 44):
+                        Excellent (38 - 44):
                     </div>
                     <div class="form-check col">
                         Exemplifies style well, requires minor fine-tuning.<br />
                     </div>
                 </div>
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-check col font-weight-bold">
-	                    Very Good (30 - 37):
+                        Very Good (30 - 37):
                     </div>
                     <div class="form-check col">
                         Generally within style parameters, some minor flaws.<br />
                     </div>
                 </div>
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-check col font-weight-bold">
-	                    Good (21 - 29):
+                        Good (21 - 29):
                     </div>
                     <div class="form-check col">
                         Misses the mark on style and/or minor flaws.<br />
                     </div>
                 </div>
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-check col font-weight-bold">
-	                    Fair (14 - 20):
+                        Fair (14 - 20):
                     </div>
                     <div class="form-check col">
                         Off flavors/aromas or major style deficiencies. Unpleasant.<br />
                     </div>
                 </div>
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-check col font-weight-bold">
-	                    Problematic (00 - 13 ):
+                        Problematic (00 - 13 ):
                     </div>
                     <div class="form-check col">
                         Major off flavors and aromas dominate. Hard to drink.<br />
                     </div>
                 </div>
-	        </div>
-	
-	    </div> 
-	    <div class="col p-5 align-items-left">
-	        <div class="form-group">
-	            <div class="form-group row border-bottom border-gray pb-3">
+            </div>
+    
+        </div> 
+        <div class="col p-5 align-items-left">
+            <div class="form-group">
+                <div class="form-group row border-bottom border-gray pb-3">
                     <!-- TODO: add category and subcategory dropdown -->
                     <div class="form-check col">
-	                    <label for="category" class="font-weight-bold">Category #</label>
+                        <label for="category" class="font-weight-bold">Category #</label>
                         <input class="form-control" name="category" type="text" value="{{ table.category }}" readonly>
                     </div>
                     <div class="form-check col">
-	                    <label for="subcategory" class="font-weight-bold">Subcategory</label>
+                        <label for="subcategory" class="font-weight-bold">Subcategory</label>
                         <select class="form-control" id="subcategory" name="subcategory">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                            <option>D</option>
-                            <option>E</option>
-                            <option>F</option>
+                            <option {% if subcategory == 'A' %}selected{% endif %}>A</option>
+                            <option {% if subcategory == 'B' %}selected{% endif %}>B</option>
+                            <option {% if subcategory == 'C' %}selected{% endif %}>C</option>
+                            <option {% if subcategory == 'D' %}selected{% endif %}>D</option>
+                            <option {% if subcategory == 'E' %}selected{% endif %}>E</option>
+                            <option {% if subcategory == 'F' %}selected{% endif %}>F</option>
                         </select>
 
                     </div>
                     <div class="form-check col">
-	                    <label for="entry" class="font-weight-bold">Entry #</label>
+                        <label for="entry" class="font-weight-bold">Entry #</label>
                         <input class="form-control" name="entry" type="text" value="{{ table_item.id }}" readonly>
                     </div>
                 </div>
-	            <div class="form-group row border-bottom border-gray pb-3">
+                <div class="form-group row border-bottom border-gray pb-3">
                     <div class="form-check col">
-	                    <label for="subcategory" class="font-weight-bold">Subcategory (spell out)</label>
-                        <input class="form-control" name="subcategory" type="text" placeholder="Subcategory">
+                        <label for="subcategory" class="font-weight-bold">Subcategory (spell out)</label>
+                        <input class="form-control" name="subcategory_txt" type="text" value="{{ subcategory_txt }}" placeholder="Subcategory">
                     </div>
                 </div>
                 
-	
-	            <div class="form-group row border-bottom border-gray pb-3">
+    
+                <div class="form-group row border-bottom border-gray pb-3">
                     <div class="form-check col">
-	                    <label for="special-ingredients" class="font-weight-bold">Special Ingredients:</label>
-                        <input class="form-control" name="special_ingredients" type="text" placeholder="Special Ingredients">
+                        <label for="special-ingredients" class="font-weight-bold">Special Ingredients:</label>
+                        <input class="form-control" name="special_ingredients" value="{{ special_ingredients }}" type="text" placeholder="Special Ingredients">
                     </div>
                 </div>
-	            <div class="form-group row border-bottom border-gray pb-3">
+                <div class="form-group row border-bottom border-gray pb-3">
                     <div class="form-check col">
-	                    <label for="bottle" class="pr-4 font-weight-bold">Bottle Inspection:</label>
-                        <input class="form-check-input" type="checkbox" value="" name="bottle_inspection" id="bottle">
+                        <label for="bottle" class="pr-4 font-weight-bold">Bottle Inspection:</label>
+                        <input class="form-check-input" type="checkbox" name="bottle_inspection" id="bottle" {% if bottle_inspection != None %}checked{% endif %}>
                         <small>Appropriate size, cap, fill level, label removal, etc.</small>
                         <br />
                         <small>Comments</small> 
-                        <input class="form-control" name="bottle_inspection_comment" type="text" placeholder="Bottle">
+                        <input class="form-control" name="bottle_inspection_comment" value="{{ bottle_inspection_comment }}" type="text" placeholder="Bottle">
                     </div>
                 </div>
-	        </div>
-	        <div class="form-group row">
-                <div class="form-group col col-sm-8">
-	                <label for="aroma" class="font-weight-bold">Aroma</label> <small>(as appropriate for style) 1-12</small>
-                </div>
-                <div class="form-group col col-sm-2">
-                    <input class="form-control" name="aroma_score" type="text" placeholder="1-12" min="1" max="12" maxlength="2">
-                </div>
-
-            </div>
-	        <div class="form-group row border-bottom border-gray pb-3">
-                <div class="form-group col">
-                        <small>Comment on malt, hops, esters, and other aromatics</small> 
-                        <input class="form-control" name="aroma_comment" type="text" placeholder="Comment on Aroma">
-                </div>
-            </div>
-	        <div class="form-group row">
-                <div class="form-group col col-sm-8">
-	                <label for="apperance" class="font-weight-bold">Apperance</label><small>(as appropriate for style)</small>
-                </div>
-                <div class="form-group col col-sm-2">
-                    <input class="form-control" name="apperance_score" type="text" placeholder="1-3" min="1" max="3" maxlength="1">
-                </div>
-            </div>
-	        <div class="form-group row border-bottom border-gray pb-3">
-                <div class="form-group col">
-                    <small>Comment on color, clarity, and head (retention, color, and texture)</small>
-                    <input class="form-control" name="apperance_comment" type="text" placeholder="Comment on Apperance">
-                </div>
-            </div>
-	
-	        <div class="form-group row">
-                <div class="form-group col col-sm-8">
-	                <label for="apperance" class="font-weight-bold">Flavor</label><small>(as appropriate for style)</small>
-                </div>
-                <div class="form-group col col-sm-3">
-                    <input class="form-control" name="flavor_score" type="text" placeholder="1-20" min="1" max="20" maxlength="2">
-                </div>
-            </div>
-	        <div class="form-group row border-bottom border-gray pb-3">
-                <div class="form-group col">
-                <small>Comment on malt, hops, fermentation characteristics, balance, finish/aftertaste, and other flavor characteristics</small>
-                <input class="form-control" name="flavor_comment" type="text" placeholder="Comments on Flavor">
-                </div>
-            </div>
-	
-	        <div class="form-group row">
-                <div class="form-group col col-sm-8">
-	                <label for="mouthfeel" class="font-weight-bold">Mouthfeel</label> <small>(as appropriate for style)</small>
-
-                </div>
-                <div class="form-group col col-sm-2">
-                    <input class="form-control" name="mouthfeel_score" type="text" placeholder="1-5" min="1" max="5" maxlength="1">
-                </div>
-            </div>
-	
-	        <div class="form-group row border-bottom border-gray pb-3">
-                <div class="form-group col">
-                <small>Comment on body,   carbonation, warmth, creaminess, astringency, and other palate sensations</small>
-                <input class="form-control" name="mouthfeel_comment" type="text" placeholder="Comments on Mouthfeel">
-                </div>
             </div>
 
+            {% include "aroma_attributes.html" %}
+            {% include "apperance_attributes.html" %}
+            {% include "flavor_attributes.html" %}
+            {% include "mouthfeel_attributes.html" %}
+            {% include "overall_attributes.html" %}
 
-	        <div class="form-group row">
-                <div class="form-group col col-sm-8">
-	                <label for="mouthfeel" class="font-weight-bold">Overall Impression</label><small>(as appropriate f  or style)</small>
-                </div>
-                <div class="form-group col col-sm-2">
-                    <input class="form-control" name="overall_score" type="text" placeholder="1-10" min="1" m  ax="10" maxlength="2">
-                </div>
-	        </div>
-
-	        <div class="form-group row border-bottom border-gray pb-3">
-                <div class="form-group col">
-                    <small>Comment on overall drinking pleasure associated with entry, give suggestions for improvement</small>
-                <input class="form-control" name="overall_comment" type="text" placeholder="Comments on Overall Impression">
-                </div>
-            </div>
-	        <div class="form-group">
-	            <div class="form-group row">
+   
+            <div class="form-group">
+                <div class="form-group row">
                     <div class="col text-center font-weight-bold">
-	                    Stylistic Accuracy
+                        Stylistic Accuracy
                     </div>
                 </div>
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="form-group col">
-			            <label class="form-check-label font-weight-bold" for="">Classic Example</label>
+                        <label class="form-check-label font-weight-bold" for="">Classic Example</label>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="4" name="style" id="style-4">
+                        <input class="form-check-input" type="radio" value="4" name="style" id="style-4" {% if style == '4' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="3" name="style" id="style-3">
+                        <input class="form-check-input" type="radio" value="3" name="style" id="style-3" {% if style == '3' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="2" name="style" id="style-2">
+                        <input class="form-check-input" type="radio" value="2" name="style" id="style-2" {% if style == '2' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="1" name="style" id="style-1">
+                        <input class="form-check-input" type="radio" value="1" name="style" id="style-1" {% if style == '1' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <label class="form-check-label font-weight-bold" for="">Not To Style</label>
+                        <label class="form-check-label font-weight-bold" for="">Not To Style</label>
                     </div>
                 </div>
-			
-	            <div class="form-group row">
+            
+                <div class="form-group row">
                     <div class="col text-center font-weight-bold">
-			            Technical Merit
+                        Technical Merit
                     </div>
                 </div>
-			
-	            <div class="form-group row">
+            
+                <div class="form-group row">
                     <div class="form-group col">
-			            <label class="form-check-label font-weight-bold" for="">Flawless</label>
+                        <label class="form-check-label font-weight-bold" for="">Flawless</label>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="4" name="technical" id="technical-4">
+                        <input class="form-check-input" type="radio" value="4" name="technical" id="technical-4" {% if technical == '4' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="3" name="technical" id="technical-3">
+                        <input class="form-check-input" type="radio" value="3" name="technical" id="technical-3" {% if technical == '3' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="2" name="technical" id="technical-2">
+                        <input class="form-check-input" type="radio" value="2" name="technical" id="technical-2" {% if technical == '2' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="1" name="technical" id="technical-1">
+                        <input class="form-check-input" type="radio" value="1" name="technical" id="technical-1" {% if technical == '1' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <label class="form-check-label font-weight-bold" for="">Significant Flaws</label>
+                        <label class="form-check-label font-weight-bold" for="">Significant Flaws</label>
                     </div>
                 </div>
 
-	            <div class="form-group row">
+                <div class="form-group row">
                     <div class="col text-center font-weight-bold">
-			            Intangibles
+                        Intangibles
                     </div>
                 </div>
-			
-	            <div class="form-group row">
+            
+                <div class="form-group row">
                     <div class="form-group col">
-			            <label class="form-check-label font-weight-bold" for="">Wonderful</label>
+                        <label class="form-check-label font-weight-bold" for="">Wonderful</label>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="4" name="intangilble" id="intangilble-4">
+                        <input class="form-check-input" type="radio" value="4" name="intangible" id="intangible-4" {% if intangible == '4' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="3" name="intangilble" id="intangilble-3">
+                        <input class="form-check-input" type="radio" value="3" name="intangible" id="intangible-3" {% if intangible == '3' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="2" name="intangilble" id="intangilble-2">
+                        <input class="form-check-input" type="radio" value="2" name="intangible" id="intangible-2" {% if intangible == '2' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <input class="form-check-input" type="radio" value="1" name="intangilble" id="intangilble-1">
+                        <input class="form-check-input" type="radio" value="1" name="intangible" id="intangible-1" {% if intangible == '1' %}checked{% endif %}>
                     </div>
                     <div class="form-group col">
-			            <label class="form-check-label font-weight-bold" for="">Lifeless</label>
+                        <label class="form-check-label font-weight-bold" for="">Lifeless</label>
                     </div>
                 </div>
-	        </div>
-	    </div>
+            </div>
+        </div>
     </div>
 
-	<div class="row p-3 border-top border-gray">
-	    <div class="col text-right">
+    <div class="row p-3 border-top border-gray">
+        <div class="col ">
+             <h4>{% trans 'Score' %}: {{ score }}</h4>
+        </div>
+        <div class="col text-right">
             <button type="submit" class="btn btn-primary">Score Beer</button>
         </div>
     </div>
