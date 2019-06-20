@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import (Contest, ContestParticipant, ContestTable, 
-    ContestTableItem, Item)
+    ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
+    Flavor, Mouthfeel)
 from django.template import loader
 
 # Create your views here.
@@ -36,10 +37,63 @@ def scoresheet(request, table_id, item_id):
     'table': table, 'contest': contest, 'table_item': table_item})
 
 def score(request, table_item_id):
-    table_item = ContestTableItem.objects.get(item=table_item_id)
+    cps = [request.user]
+    table_item = ContestTableItem.objects.get(pk=table_item_id)
+    table = ContestTable.objects.get(pk=table_item.table.id)
     contest = Contest.objects.get(pk=request.POST['contest_id'])
+    for key, value in request.POST.items():
+        print("KEY: %s, VALUE: %s" % (key, value))
 
-    return HttpResponse("Scoring beer %s category %s contest %s" % (1, 1, contest.id))
+    p = request.POST
+    score = (int(p['aroma_score']) + int(p['apperance_score']) +
+        int(p['flavor_score']) + int(p['mouthfeel_score']) +
+        int(p['overall_score']))
+
+    if request.user.id != None:
+        cps = ContestParticipant.objects.filter(
+        contest=table.contest.id).filter(user=request.user)
+
+    content = {'participant': cps[0], 'contest': contest,
+    'table': table, 'contest': contest, 'table_item': table_item, 'score': score}
+    content.update(p.dict())
+    print("CONTENT: %s" % content)
+    aroma = Aroma(score=p['aroma_score'], malt=p['aroma_malt'], hop=p['aroma_hop'],
+        fermentation=p['aroma_fermentation'], other=p['aroma_other'], 
+        comment=p['aroma_comment'])
+
+    apperance = Apperance(score=p['apperance_color'], color=p['apperance_color'], 
+        transp=p['apperance_transp'], other=p['apperance_other'], 
+        comment=p['apperance_comment'])
+
+    flavor = Flavor(score=p['flavor_score'], malt=p['flavor_malt'], 
+        hop=p['flavor_hop'], bitterness=p['flavor_bitterness'], 
+        fermentation=p['flavor_fermentation'], balance=p['flavor_balance'], 
+        final=p['flavor_final'], other=p['flavor_other'], 
+        comment=p['flavor_comment'])
+
+    mouthfeel = Mouthfeel(score=p['mouthfeel_score'], body=p['mouthfeel_body'], 
+        carbonation=p['mouthfeel_carbonation'], warmth=p['mouthfeel_warmth'], 
+        creaminess=p['mouthfeel_creaminess'], astringency=p['mouthfeel_astringency'], 
+        other=p['mouthfeel_other'], comment=p['mouthfeel_comment'])
+
+    bi = True if p['bottle_inspection'] == 'on' else False
+
+    
+    aroma.save()
+    apperance.save()
+    flavor.save()
+    mouthfeel.save()
+    sc = ContestScoreSheet(table_item=table_item, aroma=aroma, apperance=apperance,
+        flavor=flavor, mouthfeel=mouthfeel, bottle_insp=bi,
+        special_ingredients=p['special_ingredients'], 
+        bottle_insp_comment=p['bottle_inspection_comment'], 
+        overall_score=p['overall_score'], overall_comment=p['overall_comment'], 
+        style=p['style'], technical=p['technical'], intangilble=p['intangible'], 
+        total_score=score)
+
+    sc.save()
+
+    return render(request, 'score_sheet.html', content)
 
 def table(request, table_id):
     cps = [request.user]
