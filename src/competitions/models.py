@@ -130,7 +130,7 @@ class ContestScoreSheet(models.Model):
     intangilble         = models.IntegerField()
     total_score         = models.IntegerField()
     def __str__(self):
-        return "%s on %s" % (self.table_item.item.name, self.table_item.table.name)
+        return "%s on %s" % (self.table_item.item.item.name, self.table_item.table.name)
 
 
 class ContestScoreSheetDescriptor(models.Model):
