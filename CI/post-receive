@@ -4,4 +4,8 @@ cd $REPODIR
 
 echo `date +"%m-%d-%y-%H:%m"`:"TRIGGERING POOR MAN's CI" >> $REPODIR/ci.log
 git --git-dir=${REPODIR}/.git --work-tree=${REPODIR} pull -v origin master &>> $REPODIR/ci.log
+echo "Making migrations" &>> $REPODIR/ci.log
+podman exec -ti $CONTAINER /code/src/manage.py makemigrations &>> $REPODIR/ci.log
+echo "Making migrating databases" &>> $REPODIR/ci.log
+podman exec -ti $CONTAINER /code/src/manage.py migrate &>> $REPODIR/ci.log
 
