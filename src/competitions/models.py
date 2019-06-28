@@ -103,7 +103,7 @@ class ContestCategory(models.Model):
 
 class ContestTable(models.Model):
     contest  = models.ForeignKey(Contest, on_delete=models.DO_NOTHING)
-    category = models.ForeignKey(ContestCategory, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(ContestCategory, blank=True, null=True, on_delete=models.DO_NOTHING)
     name     = models.CharField(max_length=100)
     def __str__(self):
         return self.name
