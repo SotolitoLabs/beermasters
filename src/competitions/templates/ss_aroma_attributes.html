@@ -5,7 +5,7 @@
                     <label for="aroma" class="font-weight-bold">Aroma</label> <small>(as appropriate for style) 1-12</small>
                 </div>
                 <div class="form-group col col-sm-2">
-                    <input class="form-control" name="aroma_score" value="{{ aroma_score }}" type="text" placeholder="1-12" min="1" max="12" maxlength="2">
+                    <input class="form-control" name="aroma_score" value="{{ aroma.score }}" type="text" placeholder="1-12" min="1" max="12" maxlength="2">
                 </div>
             </div>
             <!-- TODO hide this stuff with the proper jquery function -->
@@ -13,19 +13,19 @@
 	            <div class="form-group row border-bottom border-gray pb-1">
 	                <div class="form-group col-3"></div>
 	                <div class="form-group col">
-	                    <label for="malt" class="font-weight-bold">{% trans 'Malt' %}</label>
+                        <label for="malt" class="font-weight-bold">{% trans 'Malt' %}</label>
 	                </div>
 	                <div class="form-group col">
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="aroma_malt" id="aroma_malt-3" {% if aroma_malt == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="aroma_malt" id="aroma_malt-3" {% if aroma.malt == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="aroma_malt" id="aroma_malt-2" {% if aroma_malt == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="aroma_malt" id="aroma_malt-2" {% if aroma.malt == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="aroma_malt" id="aroma_malt-1" {% if aroma_malt == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="aroma_malt" id="aroma_malt-1" {% if aroma.malt == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="malt" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -41,13 +41,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="aroma_hop" id="aroma_hop-3" {% if aroma_hop == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="aroma_hop" id="aroma_hop-3" {% if aroma.hop == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="aroma_hop" id="aroma_hop-2" {% if aroma_hop == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="aroma_hop" id="aroma_hop-2" {% if aroma.hop == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="aroma_hop" id="aroma_hop-1" {% if aroma_hop == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="aroma_hop" id="aroma_hop-1" {% if aroma.hop == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -63,13 +63,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="aroma_fermentation" id="aroma_fermentation-3" {% if aroma_fermentation == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="aroma_fermentation" id="aroma_fermentation-3" {% if aroma.fermentation == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="aroma_fermentation" id="aroma_fermentation-2" {% if aroma_fermentation == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="aroma_fermentation" id="aroma_fermentation-2" {% if aroma.fermentation == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="aroma_fermentation" id="aroma_fermentation-1" {% if aroma_fermentation == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="aroma_fermentation" id="aroma_fermentation-1" {% if aroma.fermentation == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -82,7 +82,7 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Other' %}</label>
 	                </div>
 	                <div class="form-group col-8">
-	                    <input class="form-control" name="aroma_other" value="{{ aroma_other }}" type="text" placeholder="Comment on Other">
+	                    <input class="form-control" name="aroma_other" value="{{ aroma.other }}" type="text" placeholder="Comment on Other">
 	                </div>
 	            </div>
             </div>
@@ -90,12 +90,8 @@
             <div class="form-group row border-bottom border-gray pb-3">
                 <div class="form-group col">
                         <small>Comment on malt, hops, esters, and other aromatics</small> 
-                        <input class="form-control" name="aroma_comment" value="{{ aroma_comment }}" type="text" placeholder="Comment on Aroma">
+                        <input class="form-control" name="aroma_comment" value="{{ aroma.comment }}" type="text" placeholder="Comment on Aroma">
                 </div>
             </div>
             <!-- /Aroma Attributes -->
-
-
-
-
 

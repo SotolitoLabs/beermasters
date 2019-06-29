@@ -1,0 +1,51 @@
+        <div class="col p-5 align-items-left">
+            <div class="form-group">
+                <div class="form-group row border-bottom border-gray pb-3">
+                    <!-- TODO: add category and subcategory dropdown -->
+                    <div class="form-check col">
+                        <label for="category" class="font-weight-bold">Category #</label>
+                        <input class="form-control" name="category" type="text" value="{{ table.category }}" readonly>
+                    </div>
+                    <div class="form-check col">
+                        <label for="subcategory" class="font-weight-bold">Subcategory</label>
+                        <select class="form-control" id="subcategory" name="subcategory">
+                            <option {% if subcategory == 'A' %}selected{% endif %}>A</option>
+                            <option {% if subcategory == 'B' %}selected{% endif %}>B</option>
+                            <option {% if subcategory == 'C' %}selected{% endif %}>C</option>
+                            <option {% if subcategory == 'D' %}selected{% endif %}>D</option>
+                            <option {% if subcategory == 'E' %}selected{% endif %}>E</option>
+                            <option {% if subcategory == 'F' %}selected{% endif %}>F</option>
+                        </select>
+
+                    </div>
+                    <div class="form-check col">
+                        <label for="entry" class="font-weight-bold">Entry #</label>
+                        <input class="form-control" name="entry" type="text" value="{{ table_item.id }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row border-bottom border-gray pb-3">
+                    <div class="form-check col">
+                        <label for="subcategory" class="font-weight-bold">Subcategory (spell out)</label>
+                        <input class="form-control" name="subcategory_txt" type="text" value="{{ subcategory_txt }}" placeholder="Subcategory">
+                    </div>
+                </div>
+                
+    
+                <div class="form-group row border-bottom border-gray pb-3">
+                    <div class="form-check col">
+                        <label for="special-ingredients" class="font-weight-bold">Special Ingredients:</label>
+                        <input class="form-control" name="special_ingredients" value="{{ score_sheet.special_ingredients }}" type="text" placeholder="Special Ingredients">
+                    </div>
+                </div>
+                <div class="form-group row border-bottom border-gray pb-3">
+                    <div class="form-check col">
+                        <label for="bottle" class="pr-4 font-weight-bold">Bottle Inspection: </label>
+                        <input class="form-check-input" type="checkbox" name="bottle_insp" id="bottle" {% if score_sheet.bottle_insp != None %}checked{% endif %}>
+                        <small>Appropriate size, cap, fill level, label removal, etc.</small>
+                        <br />
+                        <small>Comments</small> 
+                        <input class="form-control" name="bottle_insp_comment" value="{{ score_sheet.bottle_insp_comment }}" type="text" placeholder="Bottle">
+                    </div>
+                </div>
+            </div>
+

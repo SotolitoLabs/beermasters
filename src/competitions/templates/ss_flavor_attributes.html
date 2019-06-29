@@ -7,7 +7,7 @@
                     <label for="apperance" class="font-weight-bold">Flavor</label><small>(as appropriate for style)</small>
                 </div>
                 <div class="form-group col col-sm-3">
-                    <input class="form-control" name="flavor_score" value="{{ flavor_score }}" type="text" placeholder="1-20" min="1" max="20" maxlength="2">
+                    <input class="form-control" name="flavor_score" value="{{ flavor.score }}" type="text" placeholder="1-20" min="1" max="20" maxlength="2">
                 </div>
             </div>
 
@@ -22,13 +22,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="flavor_malt" id="flavor_malt-3" {% if flavor_malt == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="flavor_malt" id="flavor_malt-3" {% if flavor.malt == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="flavor_malt" id="flavor_malt-2" {% if flavor_malt == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="flavor_malt" id="flavor_malt-2" {% if flavor.malt == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="flavor_malt" id="flavor_malt-1" {% if flavor_malt == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="flavor_malt" id="flavor_malt-1" {% if flavor.malt == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="malt" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -44,13 +44,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="flavor_hop" id="flavor_hop-3" {% if flavor_hop == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="flavor_hop" id="flavor_hop-3" {% if flavor.hop == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="flavor_hop" id="flavor_hop-2" {% if flavor_hop == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="flavor_hop" id="flavor_hop-2" {% if flavor.hop == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="flavor_hop" id="flavor_hop-1" {% if flavor_hop == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="flavor_hop" id="flavor_hop-1" {% if flavor.hop == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -66,13 +66,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="flavor_bitterness" id="flavor_bitterness-3" {% if flavor_bitterness == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="flavor_bitterness" id="flavor_bitterness-3" {% if flavor.bitterness == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="flavor_bitterness" id="flavor_bitterness-2" {% if flavor_bitterness == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="flavor_bitterness" id="flavor_bitterness-2" {% if flavor.bitterness == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="flavor_bitterness" id="flavor_bitterness-1" {% if flavor_bitterness == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="flavor_bitterness" id="flavor_bitterness-1" {% if flavor.bitterness == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -88,13 +88,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="flavor_fermentation" id="flavor_fermentation-3" {% if flavor_fermentation == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="flavor_fermentation" id="flavor_fermentation-3" {% if flavor.fermentation == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="flavor_fermentation" id="flavor_fermentation-2" {% if flavor_fermentation == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="flavor_fermentation" id="flavor_fermentation-2" {% if flavor.fermentation == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="flavor_fermentation" id="flavor_fermentation-1" {% if flavor_fermentation == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="flavor_fermentation" id="flavor_fermentation-1" {% if flavor.fermentation == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -110,13 +110,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="flavor_balance" id="flavor_balance-3" {% if flavor_balance == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="flavor_balance" id="flavor_balance-3" {% if flavor.balance == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="flavor_balance" id="flavor_balance-2" {% if flavor_balance == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="flavor_balance" id="flavor_balance-2" {% if flavor.balance == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="flavor_balance" id="flavor_balance-1" {% if flavor_balance == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="flavor_balance" id="flavor_balance-1" {% if flavor.balance == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -132,13 +132,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="flavor_final" id="flavor_final-3" {% if flavor_final == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="flavor_final" id="flavor_final-3" {% if flavor.final == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="flavor_final" id="flavor_final-2" {% if flavor_final == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="flavor_final" id="flavor_final-2" {% if flavor.final == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="flavor_final" id="flavor_final-1" {% if flavor_final == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="flavor_final" id="flavor_final-1" {% if flavor.final == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -151,7 +151,7 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Other' %}</label>
 	                </div>
 	                <div class="form-group col-8">
-	                    <input class="form-control" name="flavor_other" value="{{ flavor_other }}" type="text" placeholder="Comment on Other">
+	                    <input class="form-control" name="flavor_other" value="{{ flavor.other }}" type="text" placeholder="Comment on Other">
 	                </div>
 	            </div>
             </div>
@@ -160,13 +160,9 @@
             <div class="form-group row border-bottom border-gray pb-3">
                 <div class="form-group col">
                 <small>Comment on malt, hops, fermentation characteristics, balance, finish/aftertaste, and other flavor characteristics</small>
-                <input class="form-control" name="flavor_comment" value="{{ flavor_comment }}"  type="text" placeholder="Comments on Flavor">
+                <input class="form-control" name="flavor_comment" value="{{ flavor.comment }}"  type="text" placeholder="Comments on Flavor">
                 </div>
             </div>
  
             <!-- /Flavor Attributes -->
-
-
-
-
 
