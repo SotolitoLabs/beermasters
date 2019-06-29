@@ -11,13 +11,12 @@ Environment=CONTAINER=beermaster
 Environment=IMAGE=sotolito/django-prod
 Type=simple
 TimeoutStartSec=5m
-ExecStartPre=-/usr/bin/podman rm "${CONTAINER}"
+#might not be needed ExecStartPre=-/usr/bin/podman rm "${CONTAINER}"
 
 ExecStart=podman run --network="host" -p 127.0.0.1:8000:8000 --rm -ti -v ${CODE}:/code --name ${CONTAINER} ${IMAGE} /code/src/manage.py runserver 0:8000
-ExecReload=podman exec -ti ${CONTAINER} /code/src/manage.py makemigrations
-ExecReload=podman exec -ti ${CONTAINER} /code/src/manage.py migrate
-ExecRestart=podman stop ${CONTAINER}
-ExeRestart=podman start ${CONTAINER}
+ExecReload=-/usr/bin/podman exec -ti ${CONTAINER} /code/src/manage.py migrate
+ExecRestart=/usr/bin/podman stop ${CONTAINER}
+ExeRestart=/usr/bin/podman start ${CONTAINER}
 Restart=always
 #PrivateTmp=true
 #CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETGID CAP_SETUID
