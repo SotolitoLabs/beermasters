@@ -16,7 +16,7 @@ TimeoutStartSec=5m
 ExecStart=podman run --network="host" -p 127.0.0.1:8000:8000 --rm -ti -v ${CODE}:/code --name ${CONTAINER} ${IMAGE} /code/src/manage.py runserver 0:8000
 ExecReload=-/usr/bin/podman exec -ti ${CONTAINER} /code/src/manage.py migrate
 ExecRestart=/usr/bin/podman stop ${CONTAINER}
-ExeRestart=/usr/bin/podman start ${CONTAINER}
+ExeRestart=/usr/bin/podman start -ai ${CONTAINER}
 Restart=always
 #PrivateTmp=true
 #CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETGID CAP_SETUID
