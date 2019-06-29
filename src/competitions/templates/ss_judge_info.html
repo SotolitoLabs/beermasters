@@ -1,0 +1,119 @@
+        <div class="col p-5 align-items-left">
+            <div class="form-group">
+                <label for="judge-name">Judge Name</label> {{ user.first_name }} {{ user.last_name }}<br />
+                <label for="judge-bjcp-id">Judge BJCP ID</label> { user.bjcpid }<br />
+                <label for="judge-bjcp-email">Judge Email</label> {{ user.email }}<br />
+            </div>
+    
+            <div class="form-group pl-1 mb-0">
+                <h5 class="border-bottom border-gray font-weight-bold">BJCP Rank or Status:</h5>
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="apprentice" id="apprentice">
+                        <label class="form-check-label pr-2" for="apprentice">Apprentice</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="recognized" id="recognized">
+                        <label class="form-check-label" for="recognized">Recognized</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="certified" id="certified">
+                        <label class="form-check-label" for="">Certified</label>
+                    </div>
+                </div>
+                    
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="national" id="national"> 
+                        <label class="form-check-label pr-4" for="national">National</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="master" id="master">
+                        <label class="form-check-label" for="master">Master</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="grand_master" id="grand_master"> 
+                        <label class="form-check-label" for="">Grand Master</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="honormaster" id="honormaster">
+                        <label class="form-check-label" for="honormaster">Honorary Master</label>
+                    </div>
+
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="honorgm" id="honorgm">
+                        <label class="form-check-label" for="honogm">Honorary GM</label>
+                    </div>
+    
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="mead_judge" id="mead_judge">
+                        <label class="form-check-label" for="">Mead Judge</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="provisional_judge" id="provisional_judge">
+                        <label class="form-check-label" for="">Provisional Judge</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="rank_pending" id="rank_pending">
+                        <label class="form-check-label" for="">Rank Pending</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="cider_judge" id="cider_judge">
+                        <label class="form-check-label" for="">Cider Judge</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-3">
+                <h5 class="border-bottom border-gray font-weight-bold">Non-BJCP Qualifications:</h5>
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="prof_brewer" id="prof_brewer">
+                        <label class="form-check-label" for="">Professional Brewer</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="beer_somelier" id="beer_somelier">
+                        <label class="form-check-label" for="">Beer Sommelier</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="gabf_wbc" id="gabf_wbc">
+                        <label class="form-check-label" for="">GABF/WBC</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="cert_cicerone" id="cert_cicerone">
+                        <label class="form-check-label" for="">Certified Cicerone</label>
+                    </div>
+    
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="adv_cicerone" id="adv_cicerone">
+                        <label class="form-check-label" for="">Adv. Cicerone</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="master_cicerone" id="master_cicerone">
+                        <label class="form-check-label" for="">Master Cicerone</label>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="sensory" id="sensory">
+                        <label class="form-check-label" for="">Sensory Training</label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" name="non-bjcp-sensory" id="non-bjcp-other">
+                        <label class="form-check-label" for="">Other</label>
+                    </div>
+                    <div class="form-check col">
+                        <input type="text" class="form-control" name="non-bjcp-qual-other" placeholder="Other">
+                    </div>
+                </div>
+            </div>
+ 
