@@ -127,7 +127,7 @@ class ContestScoreSheet(models.Model):
     overall_comment     = models.TextField()
     style               = models.IntegerField()
     technical           = models.IntegerField()
-    intangilble         = models.IntegerField()
+    intangible          = models.IntegerField()
     total_score         = models.IntegerField()
     def __str__(self):
         return "%s on %s" % (self.table_item.item.item.name, self.table_item.table.name)
@@ -149,8 +149,7 @@ class ContestScoreSheetDescriptor(models.Model):
 
 
 
-#TODO check categories
-#NAME = category" type="text
+#TODO check subcategories
 #NAME = subcategory" type="text
 #NAME = entry" type="text" value="{{ table_item.id }}" placeholder="Entry
 #NAME = subcategory" type="text
