@@ -1,0 +1,28 @@
+[Unit]
+Description=Beermasters Super Duper Beer Cup Managing Software
+Documentation=http://github.com/SotolitoLabs/beermasters
+After=network.target
+
+[Service]
+User=beermaster
+Group=beermaster
+Environment=CODE=/var/beermasters
+Environment=CONTAINER=beermaster
+Environment=IMAGE=sotolito/django-prod
+Type=simple
+TimeoutStartSec=5m
+#might not be needed ExecStartPre=-/usr/bin/podman rm "${CONTAINER}"
+
+ExecStart=podman run --network="host" -p 127.0.0.1:8000:8000 --rm -ti -v ${CODE}:/code --name ${CONTAINER} ${IMAGE} /code/src/manage.py runserver 0:8000
+ExecReload=-/usr/bin/podman exec -ti ${CONTAINER} /code/src/manage.py migrate
+ExecRestart=/usr/bin/podman stop ${CONTAINER}
+ExeRestart=/usr/bin/podman start -ai ${CONTAINER}
+Restart=always
+#PrivateTmp=true
+#CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_SETGID CAP_SETUID
+#ProtectSystem=full
+#ProtectHome=true
+
+
+[Install]
+WantedBy=multi-user.target
