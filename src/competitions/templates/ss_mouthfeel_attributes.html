@@ -7,14 +7,14 @@
 
                 </div>
                 <div class="form-group col col-sm-2">
-                    <input class="form-control" name="mouthfeel_score" value="{{ mouthfeel_score }}"  type="text" placeholder="1-5" min="1" max="5" maxlength="1">
+                    <input class="form-control" name="mouthfeel_score" value="{{ mouthfeel.score }}"  type="text" placeholder="1-5" min="1" max="5" maxlength="1">
                 </div>
             </div>
     
             <div class="form-group row border-bottom border-gray pb-3">
                 <div class="form-group col">
                 <small>Comment on body,   carbonation, warmth, creaminess, astringency, and other palate sensations</small>
-                <input class="form-control" name="mouthfeel_comment" value="{{ mouthfeel_comment }}"  type="text" placeholder="Comments on Mouthfeel">
+                <input class="form-control" name="mouthfeel_comment" value="{{ mouthfeel.comment }}"  type="text" placeholder="Comments on Mouthfeel">
                 </div>
             </div>
 
@@ -29,13 +29,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_body" id="mouthfeel_body-3" {% if mouthfeel_body == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_body" id="mouthfeel_body-3" {% if mouthfeel.body == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_body" id="mouthfeel_body-2" {% if mouthfeel_body == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_body" id="mouthfeel_body-2" {% if mouthfeel.body == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_body" id="mouthfeel_body-1" {% if mouthfeel_body == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_body" id="mouthfeel_body-1" {% if mouthfeel.body == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-left">
 	                    <label for="malt" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -51,13 +51,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_carbonation" id="mouthfeel_carbonation-3" {% if mouthfeel_carbonation == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_carbonation" id="mouthfeel_carbonation-3" {% if mouthfeel.carbonation == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_carbonation" id="mouthfeel_carbonation-2" {% if mouthfeel_carbonation == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_carbonation" id="mouthfeel_carbonation-2" {% if mouthfeel.carbonation == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_carbonation" id="mouthfeel_carbonation-1" {% if mouthfeel_carbonation == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_carbonation" id="mouthfeel_carbonation-1" {% if mouthfeel.carbonation == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col-2 text-right">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -73,13 +73,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_warmth" id="mouthfeel_warmth-3" {% if mouthfeel_warmth == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_warmth" id="mouthfeel_warmth-3" {% if mouthfeel.warmth == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_warmth" id="mouthfeel_warmth-2" {% if mouthfeel_warmth == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_warmth" id="mouthfeel_warmth-2" {% if mouthfeel.warmth == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_warmth" id="mouthfeel_warmth-1" {% if mouthfeel_warmth == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_warmth" id="mouthfeel_warmth-1" {% if mouthfeel.warmth == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col-2 text-right">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -95,13 +95,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_creaminess" id="mouthfeel_creaminess-3" {% if mouthfeel_creaminess == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_creaminess" id="mouthfeel_creaminess-3" {% if mouthfeel.creaminess == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_creaminess" id="mouthfeel_creaminess-2" {% if mouthfeel_creaminess == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_creaminess" id="mouthfeel_creaminess-2" {% if mouthfeel.creaminess == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_creaminess" id="mouthfeel_creaminess-1" {% if mouthfeel_creaminess == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_creaminess" id="mouthfeel_creaminess-1" {% if mouthfeel.creaminess == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col-2 text-right">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -117,13 +117,13 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Light' %}</label>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_astringency" id="mouthfeel_astringency-3" {% if mouthfeel_astringency == '3' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="3" name="mouthfeel_astringency" id="mouthfeel_astringency-3" {% if mouthfeel.astringency == 3 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_astringency" id="mouthfeel_astringency-2" {% if mouthfeel_astringency == '2' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="2" name="mouthfeel_astringency" id="mouthfeel_astringency-2" {% if mouthfeel.astringency == 2 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col text-right">
-	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_astringency" id="mouthfeel_astringency-1" {% if mouthfeel_astringency == '1' %}checked{% endif %}>
+	                    <input class="form-check-input" type="radio" value="1" name="mouthfeel_astringency" id="mouthfeel_astringency-1" {% if mouthfeel.astringency == 1 %}checked{% endif %}>
 	                </div>
 	                <div class="form-group col-2 text-right">
 	                    <label for="hop" class="font-weight-bold">{% trans 'Full' %}</label>
@@ -137,7 +137,7 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Other' %}</label>
 	                </div>
 	                <div class="form-group col-8">
-	                    <input class="form-control" name="mouthfeel_other" value="{{ mouthfeel_other }}" type="text" placeholder="Comment on Other">
+	                    <input class="form-control" name="mouthfeel_other" value="{{ mouthfeel.other }}" type="text" placeholder="Comment on Other">
 	                </div>
 	            </div>
                 <div class="form-group row border-bottom border-gray pb-1">
@@ -146,7 +146,7 @@
 	                    <label for="malt" class="font-weight-bold">{% trans 'Texture' %}</label>
 	                </div>
 	                <div class="form-group col-8">
-	                    <input class="form-control" name="mouthfeel_texture" value="{{ mouthfeel_texture }}" type="text" placeholder="Comment on Texture">
+	                    <input class="form-control" name="mouthfeel_texture" value="{{ mouthfeel.texture }}" type="text" placeholder="Comment on Texture">
 	                </div>
 	            </div>
 
