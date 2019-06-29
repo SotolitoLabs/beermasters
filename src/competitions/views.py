@@ -14,7 +14,7 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
-
+##### TODO: fix empty contest error 
 def detail(request, contest_id):
     cps = [request.user]
     contest = Contest.objects.get(pk=contest_id)
@@ -31,10 +31,18 @@ def scoresheet(request, table_id, item_id):
     if request.user.id != None:
         cps = ContestParticipant.objects.filter(
         contest=table.contest.id).filter(user=request.user)
+    #if not cps:
+    #    return render(request, 'score_sheet.html', {})
     table_item = ContestTableItem.objects.get(pk=item_id)
     contest = Contest.objects.get(pk=table.contest.id)
-    return render(request, 'score_sheet.html', {'participant': cps[0], 'contest': contest,
-    'table': table, 'contest': contest, 'table_item': table_item})
+    ss = ContestScoreSheet.objects.filter(table_item=item_id)
+    content = {'participant': cps[0], 'contest': contest,
+        'table': table, 'contest': contest, 'table_item': table_item}
+    if ss:
+        content.update({'aroma': ss[0].aroma, 'apperance': ss[0].apperance,
+          'flavor': ss[0].flavor, 'mouthfeel': ss[0].mouthfeel,
+          'score_sheet': ss[0]})
+    return render(request, 'score_sheet.html', content)
 
 def score(request, table_item_id):
     cps = [request.user]
@@ -56,7 +64,6 @@ def score(request, table_item_id):
     content = {'participant': cps[0], 'contest': contest,
     'table': table, 'contest': contest, 'table_item': table_item, 'score': score}
     content.update(p.dict())
-    print("CONTENT: %s" % content)
     aroma = Aroma(score=p['aroma_score'], malt=p['aroma_malt'], hop=p['aroma_hop'],
         fermentation=p['aroma_fermentation'], other=p['aroma_other'], 
         comment=p['aroma_comment'])
@@ -76,9 +83,8 @@ def score(request, table_item_id):
         creaminess=p['mouthfeel_creaminess'], astringency=p['mouthfeel_astringency'], 
         other=p['mouthfeel_other'], comment=p['mouthfeel_comment'])
 
-    bi = True if p['bottle_inspection'] == 'on' else False
+    bi = True if p['bottle_insp'] == 'on' else False
 
-    
     aroma.save()
     apperance.save()
     flavor.save()
@@ -86,7 +92,7 @@ def score(request, table_item_id):
     sc = ContestScoreSheet(table_item=table_item, aroma=aroma, apperance=apperance,
         flavor=flavor, mouthfeel=mouthfeel, bottle_insp=bi,
         special_ingredients=p['special_ingredients'], 
-        bottle_insp_comment=p['bottle_inspection_comment'], 
+        bottle_insp_comment=p['bottle_insp_comment'], 
         overall_score=p['overall_score'], overall_comment=p['overall_comment'], 
         style=p['style'], technical=p['technical'], intangilble=p['intangible'], 
         total_score=score)
@@ -105,4 +111,11 @@ def table(request, table_id):
     # TODO: refactor item label to contest_table_item to avoid confusion
     return render(request, 'table_detail.html', {'user': request.user,
     'items': items, 'table': table, 'participant': cps[0]})
+
+def get_dict(items):
+    c = {}
+    for key, value in contest[0].aroma.items():
+        c[key] = value
+    return c.dict()
+
 
