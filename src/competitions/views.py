@@ -14,16 +14,18 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
-##### TODO: fix empty contest error 
 def detail(request, contest_id):
     cps = [request.user]
+    participant = None
     contest = Contest.objects.get(pk=contest_id)
     if request.user.id != None:
         cps = ContestParticipant.objects.filter(
         contest=contest_id).filter(user=request.user)
     cpts = ContestTable.objects.filter(contest=contest_id)
+    if cps:
+        participant = cps[0]
     return render(request, 'contest_detail.html', 
-            {'contest': contest, 'participant': cps[0], 'tables': cpts})
+        {'contest': contest, 'participant': participant, 'tables': cpts})
 
 def scoresheet(request, table_id, item_id):
     cps = [request.user]
