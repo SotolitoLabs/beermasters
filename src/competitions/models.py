@@ -13,12 +13,28 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+# This is the categories catalog
+class BJCPcategory(models.Model):
+    date     = models.DateTimeField('Date of addition', default=timezone.now)
+    name     = models.TextField()
+    def __str__(self):
+        return self.name
+
+# This is the styles catalog
+class BJCPstyle(models.Model):
+    date     = models.DateTimeField('Date of addition', default=timezone.now)
+    name     = models.TextField()
+    category = models.ForeignKey(BJCPcategory, on_delete=models.DO_NOTHING)
+    def __str__(self):
+        return self.name
+
 # This are the beers
 class Item(models.Model):
     date  = models.DateTimeField('Date of addition', default=timezone.now)
     name  = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     brand = models.ForeignKey(Brand, on_delete=models.DO_NOTHING)
+    style = models.ForeignKey(BJCPstyle, on_delete=models.DO_NOTHING)
     def __str__(self):
         return self.name
 
