@@ -13,6 +13,21 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+# This is the categories catalog
+class Category(models.Model):
+    date     = models.DateTimeField('Date of addition', default=timezone.now)
+    name     = models.TextField()
+    def __str__(self):
+        return self.name
+
+# This is the styles catalog
+class Style(models.Model):
+    date     = models.DateTimeField('Date of addition', default=timezone.now)
+    name     = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+    def __str__(self):
+        return self.name
+
 # This are the beers
 class Item(models.Model):
     date  = models.DateTimeField('Date of addition', default=timezone.now)
