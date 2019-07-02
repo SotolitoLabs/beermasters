@@ -34,7 +34,7 @@ class Item(models.Model):
     name  = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     brand = models.ForeignKey(Brand, on_delete=models.DO_NOTHING)
-    style = models.ForeignKey(BJCPstyle, on_delete=models.DO_NOTHING)
+    style = models.ForeignKey(BJCPstyle, on_delete=models.DO_NOTHING, default="N/A")
     def __str__(self):
         return self.name
 
