@@ -478,6 +478,7 @@ def populate_style(apps, schema_editor):
         },
     ]
     BJCPStyle = apps.get_model('competitions', 'BJCPstyle')
+    BJCPCategory = apps.get_model('competitions', 'BJCPCategory')
     for d in style_data:
         category = BJCPCategory.objects.get(name=d['category'])
         cc = BJCPStyle(name=d['name'], category=category[0])
