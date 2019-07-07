@@ -13,8 +13,8 @@
     </div>
     -->
 
-    {% csrf_token %}
-    <form>
+    <form method="POST">
+        {% csrf_token %}
         <input type="text" class="login-input-text fadeIn second" name="username" autofocus required id="id_username">
         <input type="password" class="login-input-text fadeIn third" name="password" required id="id_password">
         <input type="submit" class="login-input-submit fadeIn fourth" value="{% trans 'Login' %}">
