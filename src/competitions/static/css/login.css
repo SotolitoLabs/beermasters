@@ -12,14 +12,14 @@ body {
   height: 100vh;
 }
 
-a {
+.login-link {
   color: #92badd;
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
 }
 
-h2 {
+.login-h2 {
   text-align: center;
   font-size: 16px;
   font-weight: 600;
@@ -43,7 +43,7 @@ h2 {
   padding: 20px;
 }
 
-#formContent {
+.formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -57,7 +57,7 @@ h2 {
   text-align: center;
 }
 
-#formFooter {
+.formFooter {
   background-color: #f6f6f6;
   border-top: 1px solid #dce8f1;
   padding: 25px;
@@ -70,11 +70,11 @@ h2 {
 
 /* TABS */
 
-h2.inactive {
+.login-h2.inactive {
   color: #cccccc;
 }
 
-h2.active {
+.login-h2.active {
   color: #0d0d0d;
   border-bottom: 2px solid #5fbae9;
 }
@@ -83,7 +83,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+.login-input-button, .login-input-submit, .login-input-reset  {
   background-color: #56baed;
   border: none;
   color: white;
@@ -105,11 +105,11 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+.login-input-button:hover, .login-input-submit:hover, .login-input-reset:hover  {
   background-color: #39ace7;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+.login-input-button:active, .login-input-submit:active, .login-input-reset:active  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -117,7 +117,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+.login-input-text {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -138,12 +138,11 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+.login-input-text:focus {
   background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+.login-input-text:placeholder {
   color: #cccccc;
 }
 

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+<div class="wrapper fadeInDown">
+  <div class="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon 
+    <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+    </div>
+    -->
+
+    {% csrf_token %}
+    <form>
+        <input type="text" class="login-input-text fadeIn second" name="username" autofocus required id="id_username">
+        <input type="password" class="login-input-text fadeIn third" name="password" required id="id_password">
+        <input type="submit" class="login-input-submit fadeIn fourth" value="{% trans 'Login' %}">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div class="formFooter">
+      <a href="#">{% trans 'Forgot Password?' %}</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Custom CSS for login -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+
+{% endblock %}
