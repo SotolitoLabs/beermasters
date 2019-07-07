@@ -19,6 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('competitions/', include('competitions.urls')),
     path('admin/', admin.site.urls),
+    # User management
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 admin.site.site_header = "BeerMasters!"
