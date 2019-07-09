@@ -20,7 +20,8 @@ class BJCPcategory(models.Model):
     def __str__(self):
         return self.name
 
-# This is the styles catalog
+
+# This is the styles catalog.
 class BJCPstyle(models.Model):
     date     = models.DateTimeField('Date of addition', default=timezone.now)
     name     = models.TextField()
