@@ -20,7 +20,8 @@ class BJCPcategory(models.Model):
     def __str__(self):
         return self.name
 
-# This is the styles catalog
+
+# This is the styles catalog.
 class BJCPstyle(models.Model):
     date     = models.DateTimeField('Date of addition', default=timezone.now)
     name     = models.TextField()
@@ -34,7 +35,7 @@ class Item(models.Model):
     name  = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     brand = models.ForeignKey(Brand, on_delete=models.DO_NOTHING)
-    style = models.ForeignKey(BJCPstyle, on_delete=models.DO_NOTHING, default=1)
+    style = models.ForeignKey(BJCPstyle, on_delete=models.DO_NOTHING)
     def __str__(self):
         return self.name
 
