@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from competitions.views import index
 
 urlpatterns = [
+    path('', index, name='index'),
     path('competitions/', include('competitions.urls')),
     path('admin/', admin.site.urls),
     # User management
