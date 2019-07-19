@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import  (Brand, Item, Contest, Role, ContestParticipant,
   ContestItem, ContestTable, ContestTableItem, Aroma, Apperance, Flavor, 
   Mouthfeel, DescriptorDefinition, ContestScoreSheet, 
-  ContestScoreSheetDescriptor, ContestCategory, BJCPcategory, BJCPstyle)
+  ContestScoreSheetDescriptor, ContestCategory, BJCPcategory, BJCPstyle, EndUser)
 
 # Register your models here.
 
@@ -24,3 +24,4 @@ admin.site.register(ContestTableItem)
 admin.site.register(ContestCategory)
 admin.site.register(BJCPcategory)
 admin.site.register(BJCPstyle)
+admin.site.register(EndUser)
