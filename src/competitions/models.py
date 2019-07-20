@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
 # Create your models here.
 
 
@@ -55,15 +56,12 @@ class Role(models.Model):
 # In order to avoid confusing app Users versus django auth Users, we'll refer to
 # the first ones as EndUsers, here we'll define the model
 class EndUser(models.Model):
-    date      = models.DateTimeField('Date of addition', default=timezone.now)
-    fullname  = models.CharField(max_length=50)
-    login     = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    role      = models.ForeignKey(Role, on_delete=models.DO_NOTHING)
-    email     = models.EmailField()
-    enabled   = models.BooleanField(default=True)
-    bjcp_license_no = models.CharField(max_length=15, blank=True, default='')
+    user   = models.ForeignKey(User, unique=True, on_delete=models.DO_NOTHING)
+    bjcp_id = models.CharField(max_length=15, blank=True, default='')
+    elegibleforjudge = models.BooleanField(default=False)
     def __str__(self):
-        return "%s" % (self.login)
+        return self.user.username
+
 
 # To avoid complexity on the database consider this sensorial attributes
 # as objects, the rarely change so they can be table fields
