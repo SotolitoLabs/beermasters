@@ -2,4 +2,4 @@
 
 CONTAINER=$1
 echo "Entering django shell in ${CONTAINER}"
-podman exec -ti ${CONTAINER} /code/manage.py shell
+podman exec -ti ${CONTAINER} /code/src/manage.py shell
