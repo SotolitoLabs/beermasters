@@ -49,6 +49,22 @@
       		</div>
     	</nav>
         <!-- /Navigation bar -->
+        <!-- Message bar -->
+
+
+  	    {% if messages %}
+        <div class="container">
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show">
+                <a href="#" class="close" data-dismiss="alert" onClick="$('.alert').fadeOut();" aria-label="close">&times;</a>
+                <strong>{{ type }}</strong> {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        
+	    {% endif %}
+        <!-- /Message bar -->
+
 	
 		<!-- Main Content -->
     	<main role="main" class="container">
