@@ -14,6 +14,9 @@ from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
     ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
     Flavor, Mouthfeel)
+# General
+from django.contrib import messages
+
 
 def index(request):
     latest_contest_list = Contest.objects.order_by('start_date')[:5]
@@ -132,26 +135,32 @@ def register(request):
 
 def validate_and_create(request):
     p = request.POST
-    if p['password1'] != p['password2']:
-        message = "Passwords don't match"
-        return render(request, 'register.html', {'message': message})
+
     try:
         validate_email(p['email'])
     except ValidationError:
-        message = "Invalid Email"
-        return render(request, 'register.html', {'message': message})
+        messages.warning(request, "Invalid Email")
+
+    if p['password1'] != p['password2']:
+        messages.warning(request, "Passwords don't match")
+
+    # Show return if this errors exist
+    if len(list(messages.get_messages(request))) > 0:
+        return render(request, 'register.html')
+
     try:
-        user = User.objects.create_user(username=p['username'],
-            email=p['email'],
-            password=p['password1'])
-        message = "Congratulations you're now part of the BeermaSters community"
-        return redirect("/accounts/login", {'message': message})
+        user = User.objects.create_user(username = p['username'],
+            email = p['email'],
+            password = p['password1'])
+        messages.success(request, "Congratulations you're now part of the BeerMasters community")
+        return redirect("/accounts/login")
     except IntegrityError:
-        message = "Username already exists"
-        return render(request, 'register.html', {'message': message})
+        messages.warning(request, "Username already exists")
+        return render(request, 'register.html')
     except Exception as e:
-        message = "Error: %s" % e
-        return render(request, 'register.html', {'message': message})
-    message = "Redirected from register"
-    return redirect("/", {'message': message})
+        messages.error(request, "Error: %s" % e)
+        return render(request, 'register.html')
+
+    messages.info(request, "Redirected from register")
+    return redirect("/")
 
