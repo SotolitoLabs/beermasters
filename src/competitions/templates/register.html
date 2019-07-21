@@ -9,11 +9,6 @@
 
 <form method="post">
 
-	{% if message %}
-	<div class="alert alert-danger" role="alert">
-		{{ message }}  
-	</div>
-	{% endif %}
     {% csrf_token %}
 	
 	<div class="form-group row pt-4">
