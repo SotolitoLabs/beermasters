@@ -76,7 +76,7 @@ def score(request, table_item_id):
         contest=table.contest.id).filter(user=request.user)
 
     content = {'participant': cps[0], 'contest': contest,
-    'table': table, 'contest': contest, 'table_item': table_item, 'score': score}
+    'table': table, 'contest': contest, 'table_item': table_item, 'total_score': score}
     content.update(p.dict())
     aroma = Aroma(score=p['aroma_score'], malt=p['aroma_malt'], hop=p['aroma_hop'],
         fermentation=p['aroma_fermentation'], other=p['aroma_other'], 
