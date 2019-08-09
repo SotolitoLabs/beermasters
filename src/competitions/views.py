@@ -108,7 +108,7 @@ def score(request, table_item_id):
         special_ingredients=p['special_ingredients'], 
         bottle_insp_comment=p['bottle_insp_comment'], 
         overall_score=p['overall_score'], overall_comment=p['overall_comment'], 
-        style=p['style'], technical=p['technical'], intangilble=p['intangible'], 
+        style=p['style'], technical=p['technical'], intangible=p['intangible'], 
         total_score=score)
 
     sc.save()
@@ -163,4 +163,7 @@ def validate_and_create(request):
 
     messages.info(request, "Redirected from register")
     return redirect("/")
+
+def profile(request):
+    return render(request, 'user_profile.html')
 
