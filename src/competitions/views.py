@@ -103,15 +103,32 @@ def score(request, table_item_id):
     apperance.save()
     flavor.save()
     mouthfeel.save()
-    sc = ContestScoreSheet(table_item=table_item, aroma=aroma, apperance=apperance,
-        flavor=flavor, mouthfeel=mouthfeel, bottle_insp=bi,
-        special_ingredients=p['special_ingredients'], 
-        bottle_insp_comment=p['bottle_insp_comment'], 
-        overall_score=p['overall_score'], overall_comment=p['overall_comment'], 
-        style=p['style'], technical=p['technical'], intangible=p['intangible'], 
-        total_score=score)
-
-    sc.save()
+    #If there's a scoresheet Don't save, update
+    sc = ContestScoreSheet.objects.filter(owner=request.user).filter(table_item=table_item)
+    if sc:
+        sc.aroma = aroma
+        sc.apperance = apperance
+        sc.flavor = flavor
+        sc.mouthfeel = mouthfeel
+        sc.bottle_insp = bi
+        sc.special_ingredients = p['special_ingredients']
+        sc.bottle_insp_comment = p['bottle_insp_comment']
+        sc.overall_score = p['overall_score']
+        sc.overall_comment = p['overall_comment']
+        sc.style = p['style']
+        sc.technical = p['technical']
+        sc.intangible = p['intangible']
+        sc.total_score = score
+        sc.update()
+    else:
+        sc = ContestScoreSheet(owner=request.user, table_item=table_item, aroma=aroma, apperance=apperance,
+            flavor=flavor, mouthfeel=mouthfeel, bottle_insp=bi,
+            special_ingredients=p['special_ingredients'], 
+            bottle_insp_comment=p['bottle_insp_comment'], 
+            overall_score=p['overall_score'], overall_comment=p['overall_comment'], 
+            style=p['style'], technical=p['technical'], intangible=p['intangible'], 
+            total_score=score)
+        sc.save()
 
     return render(request, 'score_sheet.html', content)
 
