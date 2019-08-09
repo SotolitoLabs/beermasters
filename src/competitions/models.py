@@ -143,6 +143,7 @@ class ContestTableItem(models.Model):
         return self.item.item.name
 
 class ContestScoreSheet(models.Model):
+    owner               = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     table_item          = models.ForeignKey(ContestTableItem, on_delete=models.DO_NOTHING)
     aroma               = models.ForeignKey(Aroma, on_delete=models.DO_NOTHING)
     apperance           = models.ForeignKey(Apperance, on_delete=models.DO_NOTHING)
