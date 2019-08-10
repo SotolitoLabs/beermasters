@@ -13,7 +13,7 @@ from django.db.utils import IntegrityError
 from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
     ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
-    Flavor, Mouthfeel)
+    Flavor, Mouthfeel, EndUser)
 # General
 from django.contrib import messages
 
@@ -163,4 +163,16 @@ def validate_and_create(request):
 
     messages.info(request, "Redirected from register")
     return redirect("/")
+
+#
+def brewer_signup(request):
+    if request.method != "POST":
+        messages.success(request, "This request method is NOT POST")
+        return render(request, 'brewer_signup.html')
+        user = User
+    else:
+        messages.success(request, "This request method is POST")
+        p = request.POST
+        return redirect("/")
+
 

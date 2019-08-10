@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+
+    <h5 class="border-bottom border-gray pb-2 mb-0">{% trans 'Request Brewer Status' %}</h5>
+    
+    <form method="post">
+    
+        {% csrf_token %}
+
+               
+        <div class="form-group row pt-4">
+            <div class="col-sm-1 mr-4">
+                <label class="font-weight-bold" for="id_username">{% trans 'Username' %}:</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="username" size="20" autofocus required id="id_username" default="{{ user.username }}" editable=False placeholder="{% trans 'Username' %}">
+            </div>
+        </div>
+    
+       
+    
+    
+        <div class="form-group row">
+            <div class="col-sm-1 mr-4">
+                <label class="font-weight-bold" for="id_bjcp_id">{% trans 'BJCP ID' %}:</label>
+            </div>
+            <div class="col-sm-3">
+                <input class="form_control" type="text" name="bjcp_id" required id="id_bjcp_id">
+            </div>
+        </div>
+    
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary mb-2">{% trans 'Apply' %}</button>
+        </div>
+    </form>
+    
+    </div>
+{% endblock %}
