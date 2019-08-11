@@ -56,7 +56,7 @@ class Role(models.Model):
 # In order to avoid confusing app Users versus django auth Users, we'll refer to
 # the first ones as EndUsers, here we'll define the model
 class EndUser(models.Model):
-    user   = models.ForeignKey(User, unique=True, on_delete=models.DO_NOTHING)
+    user   = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     bjcp_id = models.CharField(max_length=15, blank=True, default='')
     elegibleforjudge = models.BooleanField(default=False)
     def __str__(self):

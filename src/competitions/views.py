@@ -14,6 +14,8 @@ from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
     ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
     Flavor, Mouthfeel, EndUser)
+# Forms    
+from competitions.forms import BrewerapplyForm
 # General
 from django.contrib import messages
 
@@ -166,10 +168,46 @@ def validate_and_create(request):
 
 #
 def brewer_signup(request):
+    cps = [request.user]
+    user = EndUser.objects.get(pk=request.POST['user']
+    p = request.POST
+
+
+    table = ContestTable.objects.get(pk=table_item.table.id)
+    contest = Contest.objects.get(pk=request.POST['contest_id'])
+    for key, value in request.POST.items():
+        print("KEY: %s, VALUE: %s" % (key, value))
+
+    
+    score = (int(p['aroma_score']) + int(p['apperance_score']) +
+        int(p['flavor_score']) + int(p['mouthfeel_score']) +
+        int(p['overall_score']))
+
+    if request.user.id != None:
+        cps = ContestParticipant.objects.filter(
+        contest=table.contest.id).filter(user=request.user)
+
+    content = {'participant': cps[0], 'contest': contest,
+    'table': table, 'contest': contest, 'table_item': table_item, 'score': score}
+    content.update(p.dict())
+
+    sc = ContestScoreSheet(table_item=table_item, aroma=aroma, apperance=apperance,
+    flavor=flavor, mouthfeel=mouthfeel, bottle_insp=bi,
+    special_ingredients=p['special_ingredients'], 
+    bottle_insp_comment=p['bottle_insp_comment'], 
+    overall_score=p['overall_score'], overall_comment=p['overall_comment'], 
+    style=p['style'], technical=p['technical'], intangilble=p['intangible'], 
+    total_score=score)
+
+    sc.save()
+
+    return render(request, 'score_sheet.html', content)
+
     if request.method != "POST":
+        user = request.EndUser
         messages.success(request, "This request method is NOT POST")
         return render(request, 'brewer_signup.html')
-        user = User
+        
     else:
         messages.success(request, "This request method is POST")
         p = request.POST
