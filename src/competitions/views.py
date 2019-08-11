@@ -49,7 +49,8 @@ def scoresheet(request, table_id, item_id):
     #    return render(request, 'score_sheet.html', {})
     table_item = ContestTableItem.objects.get(pk=item_id)
     contest = Contest.objects.get(pk=table.contest.id)
-    ss = ContestScoreSheet.objects.filter(table_item=item_id)
+    #ss = ContestScoreSheet.objects.filter(table_item=item_id)
+    ss = ContestScoreSheet.objects.filter(owner=request.user).filter(table_item=item_id)
     content = {'participant': cps[0], 'contest': contest,
         'table': table, 'contest': contest, 'table_item': table_item}
     if ss:
@@ -67,9 +68,9 @@ def score(request, table_item_id):
         print("KEY: %s, VALUE: %s" % (key, value))
 
     p = request.POST
-    score = (int(p['aroma_score']) + int(p['apperance_score']) +
-        int(p['flavor_score']) + int(p['mouthfeel_score']) +
-        int(p['overall_score']))
+    score = (int(p.get('aroma_score', 0)) + int(p.get('apperance_score', 0)) +
+        int(p.get('flavor_score', 0)) + int(p.get('mouthfeel_score', 0)) +
+        int(p.get('overall_score', 0)))
 
     if request.user.id != None:
         cps = ContestParticipant.objects.filter(
@@ -78,24 +79,37 @@ def score(request, table_item_id):
     content = {'participant': cps[0], 'contest': contest,
     'table': table, 'contest': contest, 'table_item': table_item, 'total_score': score}
     content.update(p.dict())
-    aroma = Aroma(score=p['aroma_score'], malt=p['aroma_malt'], hop=p['aroma_hop'],
-        fermentation=p['aroma_fermentation'], other=p['aroma_other'], 
+    aroma = Aroma(score = p.get('aroma_score', 1),
+        malt = int(p.get('aroma_malt', 1)),
+        hop = int(p.get('aroma_hop', 1)),
+        fermentation = int(p.get('aroma_fermentation', 1)),
+        other=p['aroma_other'],
         comment=p['aroma_comment'])
 
-    apperance = Apperance(score=p['apperance_color'], color=p['apperance_color'], 
-        transp=p['apperance_transp'], other=p['apperance_other'], 
+    apperance = Apperance(score=int(p.get('apperance_score', 1)), 
+        color = int(p.get('apperance_color', 1)), 
+        transp = int(p.get('apperance_transp', 1)),
+        other=p['apperance_other'], 
         comment=p['apperance_comment'])
 
-    flavor = Flavor(score=p['flavor_score'], malt=p['flavor_malt'], 
-        hop=p['flavor_hop'], bitterness=p['flavor_bitterness'], 
-        fermentation=p['flavor_fermentation'], balance=p['flavor_balance'], 
-        final=p['flavor_final'], other=p['flavor_other'], 
-        comment=p['flavor_comment'])
+    flavor = Flavor(score = int(p.get('flavor_score', 0)),
+        malt=int(p.get('flavor_malt', 1)),
+        hop = int(p.get('flavor_hop', 1)),
+        bitterness = int(p.get('flavor_bitterness', 1)),
+        fermentation = int(p.get('flavor_fermentation', 1)),
+        balance = int(p.get('flavor_balance', 1)),
+        final = int(p.get('flavor_final', 1)),
+        other = p['flavor_other'], 
+        comment = p['flavor_comment'])
 
-    mouthfeel = Mouthfeel(score=p['mouthfeel_score'], body=p['mouthfeel_body'], 
-        carbonation=p['mouthfeel_carbonation'], warmth=p['mouthfeel_warmth'], 
-        creaminess=p['mouthfeel_creaminess'], astringency=p['mouthfeel_astringency'], 
-        other=p['mouthfeel_other'], comment=p['mouthfeel_comment'])
+    mouthfeel = Mouthfeel(score = int(p['mouthfeel_score'], 0),
+        body = int(p.get('mouthfeel_body', 1)),
+        carbonation = int(p.get('mouthfeel_carbonation', 1)),
+        warmth = int(p.get('mouthfeel_warmth', 1)),
+        creaminess = int(p.get('mouthfeel_creaminess', 1)),
+        astringency = int(p.get('mouthfeel_astringency', 1)),
+        other = p['mouthfeel_other'],
+        comment = p['mouthfeel_comment'])
 
     bi = True if p['bottle_insp'] == 'on' else False
 
@@ -104,31 +118,43 @@ def score(request, table_item_id):
     flavor.save()
     mouthfeel.save()
     #If there's a scoresheet Don't save, update
-    sc = ContestScoreSheet.objects.filter(owner=request.user).filter(table_item=table_item)
-    if sc:
-        sc.aroma = aroma
-        sc.apperance = apperance
-        sc.flavor = flavor
-        sc.mouthfeel = mouthfeel
-        sc.bottle_insp = bi
-        sc.special_ingredients = p['special_ingredients']
-        sc.bottle_insp_comment = p['bottle_insp_comment']
-        sc.overall_score = p['overall_score']
-        sc.overall_comment = p['overall_comment']
-        sc.style = p['style']
-        sc.technical = p['technical']
-        sc.intangible = p['intangible']
-        sc.total_score = score
-        sc.update()
+    ss = ContestScoreSheet.objects.filter(owner=request.user).filter(table_item=table_item)[0]
+    if ss:
+        print ("DEBUG: Updating: %s" % ss)
+        ss.aroma = aroma
+        ss.apperance = apperance
+        ss.flavor = flavor
+        ss.mouthfeel = mouthfeel
+        ss.bottle_insp = bi
+        ss.special_ingredients = p['special_ingredients']
+        ss.bottle_insp_comment = p['bottle_insp_comment']
+        ss.overall_score = int(p.get('overall_score', 0))
+        ss.overall_comment = p['overall_comment']
+        ss.style = int(p.get('style', 1))
+        ss.technical = int(p.get('technical', 1))
+        ss.intangible = int(p.get('intangible', 1))
+        ss.total_score = score
     else:
-        sc = ContestScoreSheet(owner=request.user, table_item=table_item, aroma=aroma, apperance=apperance,
-            flavor=flavor, mouthfeel=mouthfeel, bottle_insp=bi,
-            special_ingredients=p['special_ingredients'], 
-            bottle_insp_comment=p['bottle_insp_comment'], 
-            overall_score=p['overall_score'], overall_comment=p['overall_comment'], 
-            style=p['style'], technical=p['technical'], intangible=p['intangible'], 
-            total_score=score)
-        sc.save()
+        ss = ContestScoreSheet(owner = request.user, 
+            table_item = table_item,
+            aroma = aroma,
+            apperance = apperance,
+            flavor=flavor,
+            mouthfeel = mouthfeel,
+            bottle_insp = bi,
+            special_ingredients = p['special_ingredients'], 
+            bottle_insp_comment = p['bottle_insp_comment'], 
+            overall_score = p['overall_score'],
+            overall_comment = p['overall_comment'], 
+            style=p['style'],
+            technical = p['technical'],
+            intangible = p['intangible'], 
+            total_score = score)
+    ss.save()
+
+    content.update({'aroma': ss.aroma, 'apperance': ss.apperance,
+        'flavor': ss.flavor, 'mouthfeel': ss.mouthfeel,
+        'score_sheet': ss})
 
     return render(request, 'score_sheet.html', content)
 

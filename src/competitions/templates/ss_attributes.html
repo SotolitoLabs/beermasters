@@ -34,17 +34,17 @@
                 <div class="form-group row border-bottom border-gray pb-3">
                     <div class="form-check col">
                         <label for="special-ingredients" class="font-weight-bold">Special Ingredients:</label>
-                        <input class="form-control" name="special_ingredients" value="{{ special_ingredients }}" type="text" placeholder="Special Ingredients">
+                        <input class="form-control" name="special_ingredients" value="{{ score_sheet.special_ingredients }}" type="text" placeholder="Special Ingredients">
                     </div>
                 </div>
                 <div class="form-group row border-bottom border-gray pb-3">
                     <div class="form-check col">
                         <label for="bottle" class="pr-4 font-weight-bold">Bottle Inspection: </label>
-                        <input class="form-check-input" type="checkbox" name="bottle_insp" id="bottle" {% if bottle_insp != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="bottle_insp" id="bottle" {% if score_sheet.bottle_insp != None %}checked{% endif %}>
                         <small>Appropriate size, cap, fill level, label removal, etc.</small>
                         <br />
                         <small>Comments</small> 
-                        <input class="form-control" name="bottle_insp_comment" value="{{ bottle_insp_comment }}" type="text" placeholder="Bottle">
+                        <input class="form-control" name="bottle_insp_comment" value="{{ score_sheet.bottle_insp_comment }}" type="text" placeholder="Bottle">
                     </div>
                 </div>
             </div>

@@ -36,7 +36,7 @@
             <h6>Beer: {{ table_item }}</h6>
         </div>
         <div class="col ">
-            <h6>Score: {{ total_score }}</h6>
+            <h6>Score: {{ score_sheet.total_score }}</h6>
         </div>
 
 
@@ -61,7 +61,7 @@
     </div>
     <div class="row p-3 border-top border-gray">
         <div class="col ">
-             <h4>{% trans 'Score' %}: {{ total_score }}</h4>
+             <h4>{% trans 'Score' %}: {{ score_sheet.total_score }}</h4>
         </div>
         <div class="col text-right">
             <button type="submit" class="btn btn-primary">Score Beer</button>
