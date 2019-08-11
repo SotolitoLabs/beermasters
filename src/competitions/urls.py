@@ -10,4 +10,5 @@ urlpatterns = [
     path('table/<int:table_id>', views.table, name='table'),
     path('table/<int:table_id>/item/scoresheet/<int:item_id>', views.scoresheet, name='scoresheet'),
     path('register/', views.register, name='register'),
+    path('profile/', views.profile, name='profile'),
 ]
