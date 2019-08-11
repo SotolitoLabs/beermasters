@@ -1,87 +1,87 @@
             <div class="form-group">
                 <h5 class="border-bottom border-gray font-weight-bold">Descriptor Definitions (Mark all that apply):</h5>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="acetaldehyde" id="acetaldehyde" {% if acetaldehyde != None %}checked{% endif%}>
+                        <input class="form-check-input" type="checkbox" name="acetaldehyde" id="acetaldehyde" {% if score_sheet.acetaldehyde != None %}checked{% endif%}>
                         <label class="form-check-label font-weight-bold" for="">Acetaldehyde</label> – Green apple-like aroma and flavor. Appearance (as appropriate for style)<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="alcoholic" id="alcoholic" {% if alcoholic != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="alcoholic" id="alcoholic" {% if score_sheet.alcoholic != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Alcoholic</label> – The aroma, flavor, and warming effect of ethanol and higher alcohols. Sometimes described as hot.<br />
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="astringent" id="astringent" {% if astringent != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="astringent" id="astringent" {% if score_sheet.astringent != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Astringent</label> – Puckering, lingering harshness and/or dryness in the finish/aftertaste; harsh graininess; huskiness.<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="diacetyl" id="aiacetyl" {% if diacetyl != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="diacetyl" id="aiacetyl" {% if score_sheet.diacetyl != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Diacetyl</label> – Artificial butter, butterscotch, or toffee aroma and flavor. Sometimes perceived as a slickness on the tongue.<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="dms" id="dms" {% if dms != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="dms" id="dms" {% if score_sheet.dms != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">DMS (dimethyl sulfide)</label> – At low levels a sweet, cooked or canned corn-like aroma and flavor.<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="estery" id="estery" {% if estery != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="estery" id="estery" {% if score_sheet.estery != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Estery</label> – Aroma and/or flavor of any ester (fruits, fruit flavorings, or roses).<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="grassy" id="grassy" {% if grassy != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="grassy" id="grassy" {% if score_sheet.grassy != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Grassy</label> – Aroma/flavor of fresh-cut grass or green leaves.<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="light_Struck" id="light_Struck" {% if light_struck != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="light_Struck" id="light_Struck" {% if score_sheet.light_struck != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Light-Struck</label> – Similar to the aroma of a skunk. Mouthfeel (as appropriate for style)<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="metallic" id="metallic" {% if alcoholic != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="metallic" id="metallic" {% if score_sheet.alcoholic != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Metallic</label> – Tinny, coiny, copper, iron, or blood-like flavor.<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="oxidized" id="oxidized" {% if oxidized != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="oxidized" id="oxidized" {% if score_sheet.oxidized != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Oxidized</label> – Any one or combination of stale, winy/vinous, cardboard, papery, or sherry-like aromas and flavors. <br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="phenolic" id="phenolic" {% if phenolic != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="phenolic" id="phenolic" {% if score_sheet.phenolic != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Phenolic</label> – Spicy (clove, pepper), smoky, plastic, plastic adhesive strip, and/or medicinal (chlorophenolic). Overall Impression<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="musty" id="musty" {% if musty != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="musty" id="musty" {% if score_sheet.musty != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Musty</label> – Stale, musty, or moldy aromas/flavors.
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="solvent" id="solvent" {% if solvent != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="solvent" id="solvent" {% if score_sheet.solvent != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Solvent</label> – Aromas and flavors of higher alcohols (fusel alcohols). Similar to acetone or lacquer thinner aromas.<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="sour_acidic" id="sour_acidic" {% if sour_acidic != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="sour_acidic" id="sour_acidic" {% if score_sheet.sour_acidic != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Sour/Acidic</label> – Tartness in aroma and flavor. Can be sharp and clean (lactic acid), or vinegar-like (acetic acid).<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="sulfur" id="sulfur" {% if sulfur != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="sulfur" id="sulfur" {% if score_sheet.sulfur != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Sulfur</label> – The aroma of rotten eggs or burning matches.<br />
                     </div>
     
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="vegetal" id="vegetal" {% if vegetal != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="vegetal" id="vegetal" {% if score_sheet.vegetal != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Vegetal</label> – Cooked, canned, or rotten vegetable aroma and flavor (cabbage, onion, celery, asparagus, etc.)<br />
                     </div>
     
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="yeasty" id="yeasty" {% if yeasty != None %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" name="yeasty" id="yeasty" {% if score_sheet.yeasty != None %}checked{% endif %}>
                         <label class="form-check-label font-weight-bold" for="">Yeasty</label> – A bready, sulfury or yeast-like aroma or flavor.<br />
                     </div>
             </div>
