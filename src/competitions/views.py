@@ -45,14 +45,11 @@ def scoresheet(request, table_id, item_id):
     if request.user.id != None:
         cps = ContestParticipant.objects.filter(
         contest=table.contest.id).filter(user=request.user)
-    #if not cps:
-    #    return render(request, 'score_sheet.html', {})
     table_item = ContestTableItem.objects.get(pk=item_id)
     contest = Contest.objects.get(pk=table.contest.id)
-    #ss = ContestScoreSheet.objects.filter(table_item=item_id)
     ss = ContestScoreSheet.objects.filter(owner=request.user).filter(table_item=item_id)
     content = {'participant': cps[0], 'contest': contest,
-        'table': table, 'contest': contest, 'table_item': table_item}
+        'table': table, 'contest': contest, 'table_item': table_item.item.item}
     if ss:
         content.update({'aroma': ss[0].aroma, 'apperance': ss[0].apperance,
           'flavor': ss[0].flavor, 'mouthfeel': ss[0].mouthfeel,
