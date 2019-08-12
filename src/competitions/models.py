@@ -163,6 +163,9 @@ class ContestScoreSheet(models.Model):
 
 
 class ContestScoreSheetDescriptor(models.Model):
+    class Meta:
+        unique_together = (('score_sheet', 'descriptor'),)
+
     score_sheet = models.ForeignKey(ContestScoreSheet, on_delete=models.DO_NOTHING)
     descriptor  =  models.ForeignKey(DescriptorDefinition, on_delete=models.DO_NOTHING)
 

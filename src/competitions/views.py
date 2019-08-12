@@ -13,9 +13,14 @@ from django.db.utils import IntegrityError
 from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
     ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
-    Flavor, Mouthfeel)
+    Flavor, Mouthfeel, DescriptorDefinition, ContestScoreSheetDescriptor)
 # General
 from django.contrib import messages
+
+descriptors = ["Acetaldehyde", "Alcoholic", "Astringent", "Diacetyl", "DMS",
+    "Estery", "Grassy", "Light_struck", "Metallic", "Oxidized",
+    "Phenolic", "Musty", "Solvent", "Sour_acidic", "Sulfur", "Vegetal",
+    "Yeasty"]
 
 
 def index(request):
@@ -51,9 +56,11 @@ def scoresheet(request, table_id, item_id):
     content = {'participant': cps[0], 'contest': contest,
         'table': table, 'contest': contest, 'table_item': table_item.item.item}
     if ss:
+        ss_descriptors = get_scoresheet_descriptors(ss)
+        print("DEBUG: DESCRIPTORS %s" % ss_descriptors)
         content.update({'aroma': ss[0].aroma, 'apperance': ss[0].apperance,
           'flavor': ss[0].flavor, 'mouthfeel': ss[0].mouthfeel,
-          'score_sheet': ss[0]})
+          'score_sheet': ss[0], 'ss_descriptors': ss_descriptors})
     return render(request, 'score_sheet.html', content)
 
 def score(request, table_item_id):
@@ -74,7 +81,7 @@ def score(request, table_item_id):
         contest=table.contest.id).filter(user=request.user)
 
     content = {'participant': cps[0], 'contest': contest,
-    'table': table, 'contest': contest, 'table_item': table_item, 'total_score': score}
+    'table': table, 'contest': contest, 'table_item': table_item.item.item, 'total_score': score}
     content.update(p.dict())
     aroma = Aroma(score = p.get('aroma_score', 1),
         malt = int(p.get('aroma_malt', 1)),
@@ -148,12 +155,54 @@ def score(request, table_item_id):
             intangible = p['intangible'], 
             total_score = score)
     ss.save()
+    ss_descriptors = toggle_scoresheet_descriptors(ss, p)
 
     content.update({'aroma': ss.aroma, 'apperance': ss.apperance,
         'flavor': ss.flavor, 'mouthfeel': ss.mouthfeel,
-        'score_sheet': ss})
+        'score_sheet': ss, 'ss_descriptors': ss_descriptors})
 
     return render(request, 'score_sheet.html', content)
+
+def get_scoresheet_descriptors(ss):
+    ss_descriptors = {}
+    for d in descriptors:
+        dd = DescriptorDefinition.objects.get(name=d)
+        print("DEBUG GET: check descriptor %s, definition: %s, scoresheet %s" % (d, dd, ss))
+        try:
+            csd = ContestScoreSheetDescriptor.objects.filter(score_sheet = ss).filter(descriptor = dd)
+            print("DEBUG GET: FOUND %s" % csd)
+            ss_descriptors[d] = "on"
+        except Exception:
+            # It already exists do nothing
+            pass
+    return ss_descriptors
+
+def toggle_scoresheet_descriptors(ss, p):
+    ss_descriptors = {}
+    for d in descriptors:
+        dd = DescriptorDefinition.objects.get(name=d)
+        print("DEBUG: check descriptor %s, definition: %s" % (d, dd))
+        # Add the descriptor
+        if p.get(d, "") == "on":
+            ss_descriptors[d] = "on"
+            try:
+                ContestScoreSheetDescriptor(score_sheet = ss,
+                    descriptor = dd).save()
+            except Exception:
+                # It already exists do nothing
+                pass
+        else:
+            print("DEBUG Delete descriptor %s, value: %s" % (d, p.get(d, "")))
+            # Delete the descriptor if exists
+            try:
+                csd = ContestScoreSheetDescriptor.objects.filter(score_sheet=ss).filter(descriptor=dd)
+                print("DEBUG FOUND: %s" % csd)
+                csd.delete()
+            except Exception:
+                print("DEBUG PASSING: %s" % d)
+                # Do nothing
+                pass
+    return ss_descriptors
 
 def table(request, table_id):
     cps = [request.user]
