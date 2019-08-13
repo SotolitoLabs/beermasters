@@ -126,9 +126,12 @@ class ContestItem(models.Model):
 class ContestCategory(models.Model):
     contest = models.ForeignKey(Contest, on_delete=models.DO_NOTHING)
     name    = models.CharField(max_length=100)
-    style   = models.ForeignKey(BJCPstyle, on_delete=models.DO_NOTHING)
     def __str__(self):
         return self.name
+
+class ContestCategoryStyle(models.Model):
+    contest_category = models.ForeignKey(ContestCategory, on_delete=models.DO_NOTHING)
+    style            = models.ForeignKey(BJCPstyle, on_delete=models.DO_NOTHING)
 
 class ContestTable(models.Model):
     contest  = models.ForeignKey(Contest, on_delete=models.DO_NOTHING)
