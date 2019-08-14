@@ -16,7 +16,7 @@
     <div class="my-3 p-3 bg-white rounded box-shadow form-group">
     <div class="row p-3 border-bottom border-gray">
         <div class="col text-left">
-            <h4 class="pb-2 mb-0 font-weight-bold">{% trans 'Beer Score Sheet' %}: {{ contest.name }}</h4>
+            <h4 class="pb-2 mb-0 font-weight-bold">{% trans 'Beer Score Sheet' %}: <a href="{% url 'detail' contest.id %}">{{ contest.name }}</h4></a>
         </div>
 
     </div>
@@ -27,16 +27,20 @@
         </div> 
 -->
         <div class="col ">
-             <h6>{% trans 'Table' %}: {{ table.name }}</h6>
+            <h6>{% trans 'Table' %}: <a href="{% url 'table' table.id %}">{{ table.name }}</a></h6>
         </div>
         <div class="col ">
-            <h6>{{ participant.user.first_name }} {{ participant.user.last_name }}  ({{ participant.role.name }})</h6>
+            <h6><a href="{% url 'profile' participant.user.id %}">{{ participant.user.first_name }} {{ participant.user.last_name }}  ({{ participant.role.name }})</a></h6>
         </div>
         <div class="col ">
-            <h6>Beer: {{ table_item }}</h6>
+            <h6>{% trans 'Beer' %}: <a href="--ADD THIS-- % url 'beer' table_item.id %">ADD BEER PROFILE {{ table_item }}</a></h6>
         </div>
         <div class="col ">
-            <h6>Score: {{ score_sheet.total_score }}</h6>
+            <h6>{% trans 'Brewery' %}: <a href="--ADD THIS-- % url 'brewery' table_item.brand.id %">ADD BREWERY PROFILE {{ table_item.brand.name }}</a></h6>
+        </div>
+
+        <div class="col ">
+            <h6>{% trans 'Score' %}: {{ score_sheet.total_score }}</h6>
         </div>
 
 
