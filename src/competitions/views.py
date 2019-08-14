@@ -1,5 +1,5 @@
 # Protocol
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 # Templates
 from django.shortcuts import render
@@ -254,8 +254,16 @@ def validate_and_create(request):
     messages.info(request, "Redirected from register")
     return redirect("/")
 
-def profile(request):
+def profile(request, user_id):
     enduser = None
+    profile_user = request.user
+    if user_id:
+        # if we didn't find the user send 404
+        try:
+            profile_user = User.objects.get(pk=user_id)
+        except Exception:
+            # TODO add custom template for 404, this would be solved by the flash messages
+            raise Http404
     try:
         enduser = EndUser.objects.get(user = request.user)
     except Exception:
@@ -270,7 +278,8 @@ def profile(request):
             #update_if_changed(enduser, request, "cicerone_id")
     return render(request, 'user_profile.html',
             {'bjcp_id': request.POST.get('bjcp_id', ""),
-            'cicerone_id': request.POST.get('cicerone_id', "")})
+            'cicerone_id': request.POST.get('cicerone_id', ""),
+            'profile_user': profile_user})
 
 # Checks if a field exists in one object and updates if it changed
 def update_if_changed(obj, request, field):
