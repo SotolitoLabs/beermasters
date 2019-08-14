@@ -13,7 +13,8 @@ from django.db.utils import IntegrityError
 from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
     ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
-    Flavor, Mouthfeel, DescriptorDefinition, ContestScoreSheetDescriptor)
+    Flavor, Mouthfeel, DescriptorDefinition, ContestScoreSheetDescriptor,
+    EndUser)
 # General
 from django.contrib import messages
 
@@ -254,5 +255,24 @@ def validate_and_create(request):
     return redirect("/")
 
 def profile(request):
-    return render(request, 'user_profile.html')
+    enduser = None
+    try:
+        enduser = EndUser.objects.get(user = request.user)
+    except Exception:
+        # Pass for now
+        pass
+    if request.method == 'POST':
+        update_if_changed(request.user, request, "first_name")
+        update_if_changed(request.user, request, "last_name")
+        request.user.save()
+        if enduser:
+            update_if_changed(enduser, request, "bjcp_id")
+            #update_if_changed(enduser, request, "cicerone_id")
+    return render(request, 'user_profile.html',
+            {'bjcp_id': request.POST.get('bjcp_id', ""),
+            'cicerone_id': request.POST.get('cicerone_id', "")})
 
+# Checks if a field exists in one object and updates if it changed
+def update_if_changed(obj, request, field):
+    if getattr(obj, field) != request.POST[field]:
+        setattr(obj, field, request.POST[field])
