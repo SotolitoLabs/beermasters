@@ -11,7 +11,8 @@ from django.utils.translation import ugettext_lazy as _
 from .models import  (Brand, Item, Contest, Role, ContestParticipant,
   ContestItem, ContestTable, ContestTableItem, Aroma, Apperance, Flavor, 
   Mouthfeel, DescriptorDefinition, ContestScoreSheet, 
-  ContestScoreSheetDescriptor, ContestCategory, BJCPcategory, BJCPstyle, EndUser)
+  ContestScoreSheetDescriptor, ContestCategory, BJCPcategory, BJCPstyle, EndUser,
+  ContestCategoryStyle)
 
 # add extra fields to the Django Admin Add User form using UserCreationForm
 # ref:  https://gist.github.com/riklomas/511440
@@ -29,7 +30,12 @@ UserAdmin.add_fieldsets = (
     }),
 )
 
+class ContestCategoryStyleInline(admin.TabularInline):
+    model = ContestCategoryStyle
+    extra = 1
 
+class ContestCategoryAdmin(admin.ModelAdmin):
+    inlines = (ContestCategoryStyleInline,)
 
 # Register your models here.
 
@@ -48,10 +54,11 @@ admin.site.register(ContestParticipant)
 admin.site.register(ContestItem)
 admin.site.register(ContestTable)
 admin.site.register(ContestTableItem)
-admin.site.register(ContestCategory)
 admin.site.register(BJCPcategory)
 admin.site.register(BJCPstyle)
 admin.site.register(EndUser)
+admin.site.register(ContestCategoryStyle)
+admin.site.register(ContestCategory, ContestCategoryAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

@@ -129,6 +129,10 @@ class ContestCategory(models.Model):
     def __str__(self):
         return self.name
 
+class ContestCategoryStyle(models.Model):
+    contest_category = models.ForeignKey(ContestCategory, on_delete=models.DO_NOTHING)
+    style            = models.ForeignKey(BJCPstyle, on_delete=models.DO_NOTHING)
+
 class ContestTable(models.Model):
     contest  = models.ForeignKey(Contest, on_delete=models.DO_NOTHING)
     category = models.ForeignKey(ContestCategory, blank=True, null=True, on_delete=models.DO_NOTHING)
@@ -167,7 +171,7 @@ class ContestScoreSheetDescriptor(models.Model):
         unique_together = (('score_sheet', 'descriptor'),)
 
     score_sheet = models.ForeignKey(ContestScoreSheet, on_delete=models.DO_NOTHING)
-    descriptor  =  models.ForeignKey(DescriptorDefinition, on_delete=models.DO_NOTHING)
+    descriptor  = models.ForeignKey(DescriptorDefinition, on_delete=models.DO_NOTHING)
 
 #class BjcpRank(models.Model):
 #    name = models.CharField(max_length=100)
