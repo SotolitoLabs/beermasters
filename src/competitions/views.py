@@ -269,13 +269,14 @@ def profile(request, user_id):
     except Exception:
         # Pass for now
         pass
-    if request.method == 'POST':
+    if request.method == 'POST' and (profile_user.id == request.user.id):
         update_if_changed(request.user, request, "first_name")
         update_if_changed(request.user, request, "last_name")
         request.user.save()
         if enduser:
             update_if_changed(enduser, request, "bjcp_id")
             #update_if_changed(enduser, request, "cicerone_id")
+            enduser.save()
     return render(request, 'user_profile.html',
             {'bjcp_id': request.POST.get('bjcp_id', ""),
             'cicerone_id': request.POST.get('cicerone_id', ""),
