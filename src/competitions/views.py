@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
     ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
     Flavor, Mouthfeel, DescriptorDefinition, ContestScoreSheetDescriptor,
-    EndUser)
+    EndUser, Brand)
 # General
 from django.contrib import messages
 
@@ -281,6 +281,36 @@ def profile(request, user_id):
             {'bjcp_id': request.POST.get('bjcp_id', ""),
             'cicerone_id': request.POST.get('cicerone_id', ""),
             'profile_user': profile_user})
+
+def brewery_detail(request, brewery_id):
+    brewery = Brand.objects.get(pk=brewery_id)
+    beers = Item.objects.filter(brand = brewery_id)
+    return render(request, 'brewery.html', {'brewery': brewery, 'beers': beers})
+
+def brewery(request):
+    if request.method != "POST":
+        return render(request, 'brewery.html')
+    else:
+        b = Brand(owner = request.user, name = request.POST.get('name', 'UNDEFINED NAME'))
+        b.save()
+        return render(request, 'brewery.html', {'brewery': b})
+
+def breweries(request):
+    breweries = Brand.objects.all()
+    return render(request, 'breweries.html', {'breweries': breweries})
+
+def brewery(request):
+    if request.method != "POST":
+        return render(request, 'beer.html')
+    else:
+        b = Item(owner = request.user, name = request.POST.get('name', 'UNDEFINED NAME'))
+        b.save()
+        return render(request, 'brewery.html', {'brewery': b})
+
+def beer_detail(request, beer_id):
+    beer = Item.objects.get(pk=beer_id)
+    return render(request, 'beer.html', {'beer': beer})
+
 
 # Checks if a field exists in one object and updates if it changed
 def update_if_changed(obj, request, field):
