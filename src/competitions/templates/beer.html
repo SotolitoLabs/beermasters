@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+<h4 class="border-bottom border-gray pb-2 mb-0">{% trans 'Beer' %}</h4>
+<form method="post">
+
+    {% csrf_token %}
+	
+	<div class="form-group row">
+		<div class="col-sm-2">
+			<label class="font-weight-bold" for="name">{% trans 'Name' %}:</label>
+		</div>
+		<div class="col-sm-3">
+            <input type="text" class="form-control" name="name" size="20" autofocus required id="name" value="{{ beer.name }}" placeholder="{% trans 'Beer Name' %}">
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-2">
+			<label class="font-weight-bold" for="name">{% trans 'Brewery' %}:</label>
+		</div>
+		<div class="col-sm-3">
+            <input type="text" class="form-control" name="brewery" size="20" autofocus required id="name" value="{{ beer.brand }}" placeholder="{% trans 'Brewery Name' %}" disabled>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-2">
+			<label class="font-weight-bold" for="style">{% trans 'Style' %}:</label>
+		</div>
+		<div class="col-sm-3">
+            <input type="text" class="form-control" name="style" size="20" autofocus required id="style" value="{{ beer.style }}" placeholder="{% trans 'Style Name' %}" disabled>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-2">
+			<label class="font-weight-bold" for="category">{% trans 'Category' %}:</label>
+		</div>
+		<div class="col-sm-3">
+            <input type="text" class="form-control" name="category" size="20" autofocus required id="category" value="{{ beer.style.category }}" placeholder="{% trans 'Category Name' %}" disabled>
+		</div>
+	</div>
+	<div class="form-group row pt-4">
+		<div class="col-sm-2">
+			<label class="font-weight-bold" for="owner">{% trans 'Owner' %}:</label>
+		</div>
+		<div class="col-sm-3">
+            <input type="text" class="form-control" name="owner" size="20" autofocus required id="owner" value="{{ beer.owner  }}" disabled>
+		</div>
+    </div>
+
+
+	{% if beer.owner.id == request.user.id %}
+	<div class="col-sm-1">
+        <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+    </div>
+	{% endif %}
+</form>
+</div>
+{% endblock %}
