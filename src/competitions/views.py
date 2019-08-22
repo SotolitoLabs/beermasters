@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
     ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
     Flavor, Mouthfeel, DescriptorDefinition, ContestScoreSheetDescriptor,
-    EndUser, Brand)
+    EndUser, Brand, BJCPstyle)
 # General
 from django.contrib import messages
 
@@ -282,11 +282,6 @@ def profile(request, user_id):
             'cicerone_id': request.POST.get('cicerone_id', ""),
             'profile_user': profile_user})
 
-def brewery_detail(request, brewery_id):
-    brewery = Brand.objects.get(pk=brewery_id)
-    beers = Item.objects.filter(brand = brewery_id)
-    return render(request, 'brewery.html', {'brewery': brewery, 'beers': beers})
-
 def brewery(request):
     if request.method != "POST":
         return render(request, 'brewery.html')
@@ -295,21 +290,51 @@ def brewery(request):
         b.save()
         return render(request, 'brewery.html', {'brewery': b})
 
+def brewery_detail(request, brewery_id):
+    brewery = Brand.objects.get(pk=brewery_id)
+    beers = Item.objects.filter(brand = brewery_id)
+    if request.method == 'POST' and brewery.owner == request.user:
+        brewery.name = request.POST.get('name', 'UNDEFINED NAME')
+        brewery.save()
+    return render(request, 'brewery.html', {'brewery': brewery, 'beers': beers})
+
+
 def breweries(request):
     breweries = Brand.objects.all()
     return render(request, 'breweries.html', {'breweries': breweries})
 
-def brewery(request):
-    if request.method != "POST":
-        return render(request, 'beer.html')
-    else:
-        b = Item(owner = request.user, name = request.POST.get('name', 'UNDEFINED NAME'))
+def beers(request):
+    beers = Item.objects.all()
+    return render(request, 'beers.html', {'beers': beers})
+
+def beer(request):
+    # TODO: fix this to load from a json file instead of the database
+    brands = Brand.objects.filter(owner = request.user)
+    styles = BJCPstyle.objects.all()
+    content = {'breweries': brands, 'styles': styles}
+    #if request.method != "POST":
+    if request.method != "GET":
+        b = Item(owner = request.user, 
+            name  = request.POST.get('name', 'UNDEFINED NAME'),
+            brand = Brand.objects.get(pk=int(request.POST['brewery'])),
+            style = BJCPstyle.objects.get(pk=int(request.POST['style'])))
         b.save()
-        return render(request, 'brewery.html', {'brewery': b})
+        content.update({'beer': b})
+        return redirect("/competitions/beer/%s" % b.id)
+    return render(request, 'beer.html', content)
 
 def beer_detail(request, beer_id):
     beer = Item.objects.get(pk=beer_id)
-    return render(request, 'beer.html', {'beer': beer})
+    # TODO: fix this to load from a json file instead of the database
+    brands = Brand.objects.filter(owner = request.user)
+    styles = BJCPstyle.objects.all()
+    if request.method == 'POST' and beer.owner == request.user:
+        beer.name = request.POST.get('name', 'UNDEFINED NAME')
+        beer.brand = Brand.objects.get(pk=int(request.POST['brewery']))
+        beer.style = BJCPstyle.objects.get(pk=int(request.POST['style']))
+        beer.save()       
+    content = {'breweries': brands, 'styles': styles, 'beer': beer}
+    return render(request, 'beer.html', content)
 
 
 # Checks if a field exists in one object and updates if it changed
