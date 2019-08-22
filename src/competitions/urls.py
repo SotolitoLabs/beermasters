@@ -14,6 +14,7 @@ urlpatterns = [
     path('brewery/<int:brewery_id>', views.brewery_detail, name='brewery_detail'),
     path('brewery/add', views.brewery, name='brewery'),
     path('breweries/', views.breweries, name='breweries'),
+    path('beers/', views.beers, name='beers'),
     path('beer/<int:beer_id>', views.beer_detail, name='beer_detail'),
-    #path('beer/add', views.brewery, name='brewery'),
+    path('beer/add', views.beer, name='beer'),
 ]
