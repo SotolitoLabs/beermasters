@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+	<div class="row">
+		<div class="col-10">
+            <h4 class="border-bottom border-gray pb-2 mb-1">{% trans 'Beers' %}</h4>
+        </div>
+		<div class="col-sm-2">
+            <a href="/competitions/beer/add">{% trans 'New Beer' %}</a>
+        </div>
+    </div>
+	<div class="row">
+		<div class="col-sm-4">
+    		<ul>
+        	{% for beer in beers.all %}
+        		<li><a href="/competitions/beer/{{ beer.id}}">{{ beer }}</a></li>
+        	{% endfor %}
+        	</ul>
+		</div>
+	</div>
+
+</div>
+{% endblock %}
