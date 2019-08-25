@@ -30,6 +30,7 @@ podman exec -it bmpostgres /bin/bash
 
 su - postgres
 
+psql
 
 CREATE DATABASE beermasters;
 
