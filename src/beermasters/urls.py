@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from competitions.views import index
+from competitions.views import index, profile
 
 urlpatterns = [
     path('', index, name='index'),
@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # User management
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/profile', profile, name="accounts_profile"),
 ]
 
 admin.site.site_header = "BeerMasters!"
