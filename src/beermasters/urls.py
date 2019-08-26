@@ -24,6 +24,7 @@ urlpatterns = [
     # User management
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile', index, name="accounts_index"),
+    path('accounts/profile/', index, name="accounts_index"),
 ]
 
 admin.site.site_header = "BeerMasters!"
