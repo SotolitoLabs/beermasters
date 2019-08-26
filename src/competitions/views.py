@@ -9,6 +9,8 @@ from django.core.validators import validate_email
 # Exceptions
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
+# Decorator
+from django.contrib.auth.decorators import login_required
 # Models
 from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
@@ -45,6 +47,7 @@ def detail(request, contest_id):
     return render(request, 'contest_detail.html', 
         {'contest': contest, 'participant': participant, 'tables': cpts})
 
+@login_required
 def scoresheet(request, table_id, item_id):
     cps = [request.user]
     table = ContestTable.objects.get(pk=table_id)

@@ -24,12 +24,27 @@ Execute the script postgres_up.sh located in /src . This script will create the 
 
 Once the container has been created, we have to login into it to finish configuring it
 
+#### Shell setup
+
+```
+podman exec -it bmpostgres /bin/bash
+~# su - postgres
+~$ createuser -P beeruser
+Enter password for new role: 
+Enter it again: 
+~$ createdb -O beermaster_db_user -E UTF8 -T template0 --locale=en_US.utf8 beermaster_db
+
+```
+
+#### Manual setup
+
 ```
 
 podman exec -it bmpostgres /bin/bash
 
 su - postgres
 
+psql
 
 CREATE DATABASE beermasters;
 
