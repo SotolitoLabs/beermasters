@@ -6,4 +6,4 @@ if [[ "${1}" != "" ]]; then
     PASS=$1
 fi
 
-podman run --name bm_postgres --network="host" -p 127.0.0.1:5432:5432 -e POSTGRES_PASSWORD=${PASS} -d postgres
+podman run --name bm_postgres --network="host" -p 127.0.0.1:5432:5432 -e POSTGRES_PASSWORD=${PASS} -d -v /var/beermasters/pgsql:/var/lib/pgsql postgres
