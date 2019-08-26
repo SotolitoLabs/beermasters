@@ -33,10 +33,10 @@
             <h6><a href="{% url 'profile' participant.user.id %}">{{ participant.user.first_name }} {{ participant.user.last_name }}  ({{ participant.role.name }})</a></h6>
         </div>
         <div class="col ">
-            <h6>{% trans 'Beer' %}: <a href="--ADD THIS-- % url 'beer' table_item.id %">ADD BEER PROFILE {{ table_item }}</a></h6>
+            <h6>{% trans 'Beer' %}: <a href="{% url 'beer_detail' table_item.id %}">{{ table_item }}</a></h6>
         </div>
         <div class="col ">
-            <h6>{% trans 'Brewery' %}: <a href="--ADD THIS-- % url 'brewery' table_item.brand.id %">ADD BREWERY PROFILE {{ table_item.brand.name }}</a></h6>
+            <h6>{% trans 'Brewery' %}: <a href="{% url 'brewery_detail' table_item.brand.id %}">{{ table_item.brand.name }}</a></h6>
         </div>
 
         <div class="col ">

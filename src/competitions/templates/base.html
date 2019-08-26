@@ -25,9 +25,14 @@
             			<a class="nav-link" href="/competitions/">{% trans 'Contests' %} <span class="sr-only">(current)</span></a>
           			</li>
           			<li class="nav-item">
-            			<a class="nav-link" href="#">{% trans 'Breweries' %}</a>
+            			<a class="nav-link" href="/competitions/breweries/">{% trans 'Breweries' %}</a>
           			</li>
           			<li class="nav-item">
+            			<a class="nav-link" href="/competitions/beers/">{% trans 'Beers' %}</a>
+          			</li>
+
+          			<li class="nav-item">
+
                         <a class="nav-link" href="/competitions/profile/{{ request.user.id }}">{% trans 'Profile' %}</a>
           			</li>
           			<li class="nav-item dropdown">

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+<h4 class="border-bottom border-gray pb-2 mb-2">{% trans 'Brewery' %}</h4>
+<form method="post">
+
+    {% csrf_token %}
+<!--	
+	<div class="form-group row pt-4">
+		<div class="col-sm-2">
+			<label class="font-weight-bold" for="owner">{% trans 'Owner' %}:</label>
+		</div>
+		<div class="col-sm-3">
+            <input type="text" class="form-control" name="owner" size="20" autofocus required id="owner" value="{{ brewery.owner  }}" disabled>
+		</div>
+    </div>
+-->
+	<div class="form-group row">
+		<div class="col-sm-2">
+			<label class="font-weight-bold" for="name">{% trans 'Name' %}:</label>
+		</div>
+		<div class="col-sm-3">
+            <input type="text" class="form-control" name="name" size="20" autofocus required id="name" value="{{ brewery.name }}" placeholder="{% trans 'Brewery Name' %}">
+		</div>
+	</div>
+
+	{% if not brewery.owner.id or brewery.owner.id == request.user.id %}
+	<div class="col-sm-1">
+        <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+    </div>
+	{% endif %}
+</form>
+	<div class="form-group row">
+		<div class="col-sm-10">
+    		<h5 class="border-bottom border-gray pb-2 mb-0">{% trans 'Beers' %}</h5> 
+		</div>
+		<div class="col-sm-2">
+    		<a class="border-bottom border-gray pb-2 mb-0" href="/competitions/beer/add">{% trans 'New Beer' %}</a>
+		</div>
+	</div>
+
+	{% if brewery.owner.id %}
+	<div class="form-group row">
+		<div class="col-sm-3">
+    		<ul>
+        	{% for beer in beers.all %}
+        		<li><a href="/competitions/beer/{{ beer.id}}">{{ beer }}</a></li>
+        	{% endfor %}
+        	</ul>
+		</div>
+	</div>
+	{% endif %}
+
+</div>
+{% endblock %}
