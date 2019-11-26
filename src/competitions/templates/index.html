@@ -3,7 +3,15 @@
 {% load static %}
 {% block content %}
 <div class="my-3 p-3 bg-white rounded box-shadow">
-<h6 class="border-bottom border-gray pb-2 mb-0">{% trans 'Latest Contests' %}</h6>
+	<div class="row">
+		<div class="col-10">
+            <h4 class="border-bottom border-gray pb-2 mb-1">{% trans 'Latest Contest' %}</h4>
+        </div>
+		<div class="col-sm-2">
+            <a href="/competitions/add">{% trans 'New Contest' %}</a>
+        </div>
+    </div>
+
 {% if latest_contest_list %}
 
 {% for contest in latest_contest_list %}
