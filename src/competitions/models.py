@@ -44,6 +44,7 @@ class Contest(models.Model):
     start_date = models.DateTimeField()
     end_date   = models.DateTimeField()
     name       = models.CharField(max_length=100)
+    owner      = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
     def __str__(self):
         return self.name
 
