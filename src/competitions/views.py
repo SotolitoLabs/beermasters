@@ -16,7 +16,7 @@ from django.contrib.auth.models import User
 from .models import (Contest, ContestParticipant, ContestTable, 
     ContestTableItem, Item, ContestScoreSheet, Aroma, Apperance,
     Flavor, Mouthfeel, DescriptorDefinition, ContestScoreSheetDescriptor,
-    EndUser, Brand, BJCPstyle)
+    EndUser, Brand, BJCPstyle, Role)
 # General
 from django.contrib import messages
 
@@ -338,6 +338,22 @@ def beer_detail(request, beer_id):
         beer.save()       
     content = {'breweries': brands, 'styles': styles, 'beer': beer}
     return render(request, 'beer.html', content)
+
+def competition(request):
+    if request.method != "POST":
+        return render(request, 'contest.html')
+    else:
+        c = Contest(owner = request.user,
+            start_date = request.POST.get('start_date', '01/01/2020'),
+            end_date = request.POST.get('end_date', '01/01/2020'),
+            name  = request.POST.get('name', 'UNDEFINED NAME'))
+        c.save()
+        r = Role.objects.get(pk=2)
+        p = ContestParticipant(contest = c,
+            user = request.user,
+            role = r).save()
+        return render(request, 'contest.html', {'contest': c})
+
 
 
 # Checks if a field exists in one object and updates if it changed
