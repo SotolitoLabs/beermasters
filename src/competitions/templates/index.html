@@ -12,22 +12,41 @@
         </div>
     </div>
 
-{% if latest_contest_list %}
+{% if contest_list %}
 
-{% for contest in latest_contest_list %}
-	<div class="media text-muted pt-3">
-		<img data-src="{% static 'js/holder.js' %}/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-    	<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-  		<a href="/competitions/{{ contest.id }}/">{{ contest.name }}</a>
-		</p>
-	</div>
+    {% for contest in contest_list %}
+	    <div class="media text-muted pt-3">
+		    <img data-src="{% static 'js/holder.js' %}/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+    	    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+  		        <a href="/competitions/{{ contest.id }}/">{{ contest.name }}</a>
+		    </p>
+	    </div>
 {% endfor %}
+    <div class="pagination">
+	    <span class="step-links">
+	    {% if contest_list.has_previous %}
+		    <a href="?page=1">&laquo; first</a>
+		    <a href="?page={{ contest_list.previous_page_number }}">previous</a>
+	    {% endif %}
+		    <span class="current">
+			    {% trans 'Page' %} {{ contest_list.number }} of {{ contest_list.paginator.num_pages }}.
+		    </span>
+	    {% if contest_list.has_next %}
+		    <a href="?page={{ contest_list.next_page_number }}">next</a>
+		    <a href="?page={{ contest_list.paginator.num_pages }}">last &raquo;</a>
+	    {% endif %}
+	    </span>
+    </div>
+
 {% else %}
 <p>No Contests are available.</p>
 {% endif %}
 <small class="d-block text-right mt-3">
 	<a href="#">{% trans 'All Contests' %}</a>
 </small>
+
+
+
 
 </div>
 {% endblock %}
