@@ -19,6 +19,7 @@ from .models import (Contest, ContestParticipant, ContestTable,
     EndUser, Brand, BJCPstyle, Role)
 # General
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 descriptors = ["Acetaldehyde", "Alcoholic", "Astringent", "Diacetyl", "DMS",
     "Estery", "Grassy", "Light_struck", "Metallic", "Oxidized",
@@ -27,10 +28,14 @@ descriptors = ["Acetaldehyde", "Alcoholic", "Astringent", "Diacetyl", "DMS",
 
 
 def index(request):
-    latest_contest_list = Contest.objects.order_by('start_date')[:5]
+    #latest_contest_list = Contest.objects.order_by('start_date')[:5]
+    contest_list = Contest.objects.all()
+    paginator = Paginator(contest_list, 5)
+    page = request.GET.get('page')
+    contests = paginator.get_page(page)
     template = loader.get_template('index.html')
     context = {
-        'latest_contest_list': latest_contest_list,
+        'contest_list': contests,
     }
     return HttpResponse(template.render(context, request))
 
