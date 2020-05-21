@@ -8,13 +8,13 @@ We need this in order to trigger the `post-recieve` hook
 $ git init --bare /var/beer/ci-update-repo
 ```
 
-## (SERVER) Add the post recieve script
+## (SERVER) Add the post receive script
 This can be as easy as issuing a `git pull` or as complex as creating packages, containers
 and running smoke tests.
 
 ```
 $ cd ci-update-repo/hooks
-$ cat <<EOF >> post-recieve
+$ cat <<EOF >> post-receive
 #!/usr/bin/sh
 # Just pull on the repo
 REPODIR="/var/beermasters"
